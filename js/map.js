@@ -63,7 +63,7 @@ function addSelectedLayer(USType) {
         visibility : true,
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
-            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/var/www/gis/wfs.map&service=WFS',
+            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/wfs.map&service=WFS',
             featureType : USType
         })
         // TODO: instead of dividing USes on different layers, try to keep them
