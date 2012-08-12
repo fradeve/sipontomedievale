@@ -57,18 +57,21 @@ function addSelectedLayer(USType) {
         map.layers[1].destroy()
     };
 
-    var uses_layer = new OpenLayers.Layer.Vector("US Layer", {
+    uses_layer = new OpenLayers.Layer.Vector("US Layer", {
         strategies : [new OpenLayers.Strategy.Fixed()],
         projection : _projObj.wgs84,
         visibility : true,
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
+            // TODO: try WFS 1.1.0 and OL reprojection
             url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/wfs.map&service=WFS',
             featureType : USType
         })
         // TODO: instead of dividing USes on different layers, try to keep them
         // on the same layer, and use filters to switch
     });
+
+    map.addLayers([uses_layer])
 
     // define the behaviour of geometries in layer when selected
     var select_feature_control = new OpenLayers.Control.SelectFeature(
@@ -77,9 +80,12 @@ function addSelectedLayer(USType) {
             multiple : false,
             toggle : true
         });
-
-    map.addLayers([uses_layer])
-
     map.addControl(select_feature_control);
     select_feature_control.activate();
+
+    // zoom to layer extent function
+    map.zoomToExtent(uses_layer.getDataExtent())
 }
+
+// TODO: when clicking on feature:
+// map.zoomToExtent(map.layers[1].features[1].geometry.getBounds());
