@@ -73,6 +73,11 @@ function addSelectedLayer(USType) {
 
     map.addLayers([uses_layer])
 
+    // zoom to layer extent function after complete layer loading
+    uses_layer.events.register('loadend', uses_layer, function(evt) {
+        map.zoomToExtent(uses_layer.getDataExtent())
+    })
+
     // define the behaviour of geometries in layer when selected
     var select_feature_control = new OpenLayers.Control.SelectFeature(
         uses_layer,
@@ -82,10 +87,4 @@ function addSelectedLayer(USType) {
         });
     map.addControl(select_feature_control);
     select_feature_control.activate();
-
-    // zoom to layer extent function
-    map.zoomToExtent(uses_layer.getDataExtent())
 }
-
-// TODO: when clicking on feature:
-// map.zoomToExtent(map.layers[1].features[1].geometry.getBounds());
