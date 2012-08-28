@@ -8,6 +8,7 @@ var _projObj = {
     mercator : new OpenLayers.Projection('EPSG:900913')
 };
 
+
 function init() {
     map = new OpenLayers.Map('map_element', {
         maxExtent : new OpenLayers.Bounds(
@@ -43,7 +44,45 @@ function init() {
     map.addLayers([osm_layer]);
     var gargano = new OpenLayers.Bounds(15.66,41.60,16.14,41.91);
     map.zoomToExtent(gargano.transform(_projObj.wgs84, _projObj.mercator))
-}
+};
+
+
+function onPopupClose(evt) {
+    selectFeatureCtrl.unselect(selectedFeature);
+};
+
+
+function onSelect(feature) {
+    selectedFeature = feature
+    loadScr(feature.attributes.scrid)
+    popup = new OpenLayers.Popup.FramedCloud("popup", feature.geometry.getBounds().getCenterLonLat(), new OpenLayers.Size(200, 200), "<div id='content'> <img src='images/loading.gif'></img> </div>", null, true, onPopupClose);
+    feature.popup = popup;
+    map.addPopup(popup);
+};
+
+
+function onUnselect(feature) {
+    map.removePopup(feature.popup);
+    feature.popup.destroy();
+    feature.popup = null;
+};
+
+
+function loadScr(scr) {
+    $.ajax({
+        type : 'POST',
+        url : 'wsgi/golden_retriever.py',
+        data : {
+                scr : scr
+               }
+        }).done(function(html) {
+            console.log(html);
+            $("#content img").remove();
+            $("#content").append(html);
+            popup.setSize(new OpenLayers.Size(300, 300))
+        })
+};
+
 
 function addSelectedLayer(USType) {
     // before adding new layer, check if there are other layers loaded,
@@ -79,12 +118,27 @@ function addSelectedLayer(USType) {
     })
 
     // define the behaviour of geometries in layer when selected
-    var select_feature_control = new OpenLayers.Control.SelectFeature(
-        uses_layer,
+    var selectFeatureCtrl = new OpenLayers.Control.SelectFeature(
+        [uses_layer],
         {
             multiple : false,
-            toggle : true
+            toggle : true,
+            onSelect : onSelect,
+            onUnselect : onUnselect
         });
-    map.addControl(select_feature_control);
-    select_feature_control.activate();
+
+    // define the behaviour of geometries when hover
+    var highlightCtrl = new OpenLayers.Control.SelectFeature(
+        uses_layer,
+        {
+            hover: true,
+            highlightOnly: true,
+            renderIntent: "temporary"
+        });
+
+    map.addControl(highlightCtrl);
+    map.addControl(selectFeatureCtrl);
+
+    highlightCtrl.activate();
+    selectFeatureCtrl.activate();
 }

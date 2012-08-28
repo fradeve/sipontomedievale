@@ -51,15 +51,15 @@ The next interesting question could be: if all the field describing a single SCR
 
 So, to sum up: the SCR table has very small informations, referring to the "fragments of texts" table for all the fields values, whose nature is defined here by a number also listed in a table of the "type of text fragments". This way to proceed defines a (potentially infinite) "chain" of data, like:
 
-cxt_tbl_cxt <-- cor_tbl_txt <-- cor_lut_txttype
+    cxt_tbl_cxt <-- cor_tbl_txt <-- cor_lut_txttype
 
-Values in `cor_tbl_txt` are tied to the SCR record in `cxt_tbl_cxt` using the same SCR code, for example "ARK_22". This code is commonly composed adding to a site code (_ARK_) a progressive number or, most useful, an SCR number (_22_). This means that Ark can handle data from various sites, simply changing the site code, used as a connector among the SCR record and all the data fragments. In other words, the SCR code is the unique record identifier for the SCR.
+Values in `cor_tbl_txt` are tied to the SCR record in `cxt_tbl_cxt` using the same SCR code, for example `ARK_22`. This code is commonly composed adding to a site code (_ARK_) a progressive number or, most useful, an SCR number (_22_). This means that Ark can handle data from various sites, simply changing the site code, used as a connector among the SCR record and all the data fragments. In other words, the SCR code is the unique record identifier for the SCR.
 
 ## What about the other modules? ##
 
-There is a better way to call the "SCR code": _itemkey_. The itemkey, as reported above, is the unique identifier for a record, and it is accompanied by an `itemvalue`: this couple allow to identify any fragment and tie it directly to the correct record, in any module. E.g., if we have the text of a description field (`txttype=34`) in the table of data fragments (`cor_tbl_txt`), in it's record we will find also an `itemkey=cxt_cd` and an `itemvalue=ARK_22`. This is a way to say that this text refers to the SCR "ARK_22" of the module of context records.
+There is a better way to call the "SCR code": _itemkey_. The itemkey, as reported above, is the unique identifier for a record, and it is accompanied by an `itemvalue`: this couple allows to identify any fragment and tie it directly to the correct record, in any module. E.g., if we have the text of a description field (`txttype=34`) in the table of data fragments (`cor_tbl_txt`), in it's record we will find also an `itemkey=cxt_cd` and an `itemvalue=ARK_22`. This is a way to say that this text refers to the SCR `ARK_22` of the module of context records.
 
-In the same way, we have a single and unique itemkey:itemvalue couple in the same module. So said, an entry in our address book can probably have an itemvalue "ARK_22" (because it contains data of a person working on the same excavation project), but obviously it's itemkey will be "abk_cd", because it is an entry in the address book module.
+In the same way, we have a single and unique `itemkey:itemvalue` couple in the same module. So said, an entry in our address book can probably have an itemvalue `ARK_22` (because it contains data of a person working on the same excavation project), but obviously it's itemkey will be `abk_cd`, because it is an entry in the address book module.
 
 ## What does _tbl_, _lut_ stand for? ##
 
@@ -73,11 +73,11 @@ As explained on the dedicated page on [Ark wiki][0], the import process is avail
 
 In Ark v. 1.0 some fields are missing in the table `ark.cor_tbl_cmap_structure`; you have to manually insert the following columns; the parameters have been tested trivially.
 
---------- Field		Type		Collation		Null	Default
-raw_stecd_tbl		varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
-raw_stecd_col		varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
-raw_stecd_join_col	varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
-tbl_stecd_join_col	varchar(255)	latin1_swedish_ci	No	None
+    --------- Field		Type		Collation		Null	Default
+    raw_stecd_tbl		varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
+    raw_stecd_col		varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
+    raw_stecd_join_col	        varchar(255)	latin1_swedish_ci	No	None		 	 	 	 	 	 	 
+    tbl_stecd_join_col	        varchar(255)	latin1_swedish_ci	No	None
 
 ### Import the table ###
 
@@ -92,7 +92,7 @@ The best way to import your records in Ark is to export them to a CSV. On an GNU
 
 To fit the Ark structure, it is better to do some pre-processing on the data. Because of the limited functions of PHPMyAdmin, this can be done quicker using some spreadsheet editors, like [LibreOffice Calc][4], exporting the resulting spreadsheet in a CSV ad importing it again as explained above. In this guide we will walk trough the import of a series of SCR, but you can virtually import everything that could be managed by one of the Ark modules. What is absolutely needed in a CSV to be imported? The only is __uid__: every record must have an unique identifier, which could be either a progressive number or the SCR number itself; this is used by the script to run along the lines ad import data. Other considerations about data structure in the CSV:
 
-* __site__: as described above, the itemvalue is formed of a site code plus a uid; could be useful to use a per-site site code, which can be a column in the CSV; e.g. for the "Siponto" site, we have a column named `site_cd` filled with the value "SIP"; the generated itemvalue will be "SIP" plus the SCR number: "SIP_128", "SIP_129", etc.
+* __site__: as described above, the itemvalue is formed of a site code plus a uid; could be useful to use a per-site site code, which can be a column in the CSV; e.g. for the "Siponto" site, we have a column named `site_cd` filled with the value "SIP"; the generated itemvalue will be "SIP" plus the SCR number: `SIP_128`, `SIP_129`, etc.
 * __multiple data__: some fields does not support multiple values, be careful during imports
 
 ### Map your fields ###
@@ -128,7 +128,7 @@ Now that we have saved the CMAP, we can create a new Structure Map. Select the C
 As usually happens when using a new software, no one expects that things will run just fine during the first attempt. So, a tip: make a backup of your Ark database. If data will be incorrectly imported, turning back to a previous state of the database is nearly impossible. Most servers have so much space that a database backup is a quite simple thing. Let's see how this can be done.
 
 0.	in PHPMyAdmin select the `ark` database
-0.	select the "Operations" tab and write down a new name in the "Copy database to:" field (e.g., `arkgood` will be fine); the following options must be selected: "Structure and data", "CREATE DATABASE before copying" and "Add AUTO_INCREMENT value"; press "Go"
+0.	select the "Operations" tab and write down a new name in the "Copy database to:" field (e.g., `arkgood` will be fine); the following options must be selected: "Structure and data", "CREATE DATABASE before copying" and `Add AUTO_INCREMENT value`; press __Go__
 0.	to recover the "good" database after a wrong import, simply delete the messed up database (`ark`) and make a new copy of the `arkgood` database named `ark`: reload Ark in the browser and you will get a new Ark instance "frozen" as before the import (and can have fun with imports again!)
 
    [0]: http://ark.lparchaeology.com/wiki/index.php/Importing_Data
