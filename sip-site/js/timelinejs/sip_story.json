@@ -1,0 +1,45 @@
+
+{
+    "timeline":
+    {
+        "headline":"Storia di una città abbandonata",
+        "type":"default",
+		"text":"A volte, le cose vanno storte",
+		"startDate":"800,1,1",
+        "date": [
+            {
+                "startDate":"800",
+                "headline":"Primo insediamento longobardo",
+                "text":"<p>Abbiamo le lance lunghe, ma solo quelle</p>",
+                "asset":
+                {
+                    "media":"http://www.youtube.com/watch?v=Qyfj4mZ54N8",
+                    "credit":"",
+                    "caption":""
+                }
+            },
+            {
+                "startDate":"1000",
+                "headline":"Qualcuno tira su un muro",
+                "text":"<p>«Lo faremo dritto», disse</p>",
+                "asset":
+                {
+                    "media":"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Basilica_antica_di_Siponto_-_angolo.jpg/800px-Basilica_antica_di_Siponto_-_angolo.jpg",
+                    "credit":"",
+                    "caption":"resti di muri"
+                }
+            },
+	    {
+                "startDate":"1200",
+                "headline":"Invenzione dei focolari",
+                "text":"Caldi d'inverno, inutili d'estate",
+                "asset":
+                {
+                    "media":"http://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Un_focolare.jpg/800px-Un_focolare.jpg",
+                    "credit":"",
+                    "caption":""
+                }
+            }
+	]
+   }
+}

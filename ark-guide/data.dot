@@ -1,0 +1,32 @@
+digraph g {
+	rankdir = "BT"
+	ranksep="1.5"
+
+	edge [];
+
+	// nodes
+
+	node0 [
+	label = "{ <n01> id | <n02> cxttype | <n03> cre_by | <n04> cre_on} | <f0> cxt_lut_cxttype"
+	fillcolor = "grey"
+	style = "filled,rounded"
+	shape = "record"
+	];
+
+	node1 [
+	label = "<f0> cxt_tbl_cxt | { <n11> cxt_cd | <n12> cxt_no | <n13> ste_cd | <n14> cxttype | <n15> cre_by | <n16> cre_on} "
+	shape = "record"
+	style= "rounded"
+	];
+
+	node2 [
+	label = "{ <n21> id | <n22> username | <n23> password | <n24> firstname | <n25> lastname | <n26> initials | <n27> sfilter | <n28> email | <n29> account_enabled | <n210> cre_by | <n211> cre_on } | <f0> cor_tbl_users"
+	style = "rounded"
+	shape = "record"
+	];
+
+	// relations
+
+	node0:n01 -> node1:n14 
+	node2:n21 -> node1:n15
+}

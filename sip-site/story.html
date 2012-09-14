@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Siponto / Storia</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
+    <style>
+        body {
+            padding-bottom: 40px;
+            padding-top: 0px;
+        }
+
+        .sidebar-nav-fixed {
+            padding: 9px 0;
+            position:fixed;
+            left:35px;
+            top:63px;
+            width:290px;
+        }
+
+        .row-fluid > .span-fixed-sidebar {
+            margin-left: 290px;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".main-sidebar">
+
+    <!-- navbar start -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Siponto medievale</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="map.html">GIS</a></li>
+                        <li><a href="tour.html">WebTour</a></li>
+                        <li class="active"><a href="#">Storia</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- navbar end -->
+    
+    <!-- WebGL alert modal box -->
+    <div id="webglmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="webglmodallabel">Alcuni contenuti potrebbero non essere visibili</h3>
+        </div>
+        <div class="modal-body modal-text-color">
+            <p><strong>Attenzione!</strong> Alcuni dei contenuti in questa pagina possono essere visualizzati solo su browser che supportano <a href="http://get.webgl.org">WebGL</a>. Il tuo browser ha generato un errore:<br></p>
+            <p id="errormsg"></p><br>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Chiudi</button>
+        </div>
+    </div>
+    <!-- end WebGL alert modal -->
+    <br>
+    <br>
+    <br>
+    <!-- fluid scaffolding -->
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+            <!-- lateral nav start -->
+            <div class="span3 main-sidebar">
+                <div class="well sidebar-nav-fixed">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Storia</li>
+                        <li class="active"><a href="#antica"><i class="icon-chevron-right"></i> Età antica</a></li>
+                        <li><a href="#medioevo"><i class="icon-chevron-right"></i> Medioevo</a></li>
+                        <li><a href="#moderna"><i class="icon-chevron-right"></i> Età moderna</a></li>
+                        <li class="nav-header">Gli scavi</li>
+                        <li><a href="#primecampagne"><i class="icon-chevron-right"></i> Prime campagne</a></li>
+                        <li><a href="#nuovecampagne"><i class="icon-chevron-right"></i> Nuove campagne</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- lateral nav end -->
+
+            <div class="span9">
+                <section id="antica">
+                    <div class="hero-unit">
+                        <div class="page-header">
+                            <h1>Età antica</h1>
+                        </div>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies est sed lacus mollis ut pretium neque porta. Nullam porta, tellus mollis mattis viverra, leo nisi facilisis tortor, a viverra nisi diam ac sapien. Morbi vulputate magna libero. Maecenas lacinia neque nec odio vestibulum cursus. Integer condimentum nisl ac quam vestibulum laoreet. Duis ultricies magna vitae purus tempor sed scelerisque ante malesuada. Etiam ut iaculis leo. Nunc interdum, lorem quis consequat condimentum, sapien tortor rhoncus sem, sit amet mattis nulla nisl eu tellus. Morbi id metus id risus congue accumsan. Morbi ipsum ipsum, dignissim quis mollis a, luctus tempor diam.
+                    </div>
+                </section>
+                <section id="medioevo">
+                    <div class="hero-unit">
+                        <div class="page-header">
+                            <h1>Medioevo</h1>
+                        </div>
+                        Etiam tempus dolor eget nisl fringilla vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc in porta odio. Ut eu eros id elit varius bibendum. Donec facilisis tempor rutrum. Cras urna libero, varius id laoreet vitae, facilisis in tellus. Donec sit amet sem in orci tincidunt consequat sit amet et turpis.
+                    </div>
+                </section>
+                <section id="moderna">
+                    <div class="hero-unit">
+                        <div class="page-header">
+                            <h1>Età moderna</h1>
+                        </div>
+                        Praesent porttitor adipiscing quam ac interdum. Donec lectus neque, porta id iaculis vel, posuere vitae ipsum. Nulla iaculis condimentum dui nec laoreet. Sed vitae mi ac nibh elementum fringilla et vel nisl. Aliquam erat volutpat. Nullam rhoncus scelerisque justo, non varius nisi pretium at. Phasellus ultricies sapien eget nisi congue egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent ornare ultricies viverra. Integer diam urna, pharetra vel mollis non, eleifend ac eros.
+                    </div>
+                </section>
+                <section id="primecampagne">
+                    <div class="hero-unit">
+                        <div class="page-header">
+                            <h1>Le prime campagne di scavo</h1>
+                        </div>
+                        Praesent porttitor adipiscing quam ac interdum. Donec lectus neque, porta id iaculis vel, posuere vitae ipsum. Nulla iaculis condimentum dui nec laoreet. Sed vitae mi ac nibh elementum fringilla et vel nisl. Aliquam erat volutpat. Nullam rhoncus scelerisque justo, non varius nisi pretium at. Phasellus ultricies sapien eget nisi congue egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent ornare ultricies viverra. Integer diam urna, pharetra vel mollis non, eleifend ac eros.
+                        <br>
+                        <br>
+                        <div class="row-fluid">
+                            <div class="span3">
+                                <div class="thumbnail">
+                                    <img src="http://www.comune.manfredonia.fg.it/aast/images/santuariosiponto2.jpg" alt="">
+                                    <div class="caption">
+                                        <h4>etichetta</h4>
+                                        <p>Uno spiegone lungo lungo per l'immagine</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span9">
+                                <div class="accordion" id="accordion2">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                                Scodella con uccello: un ritrovamento insolito
+                                            </a>
+                                        </div>
+                                        <div id="collapseOne" class="accordion-body collapse in">
+                                            <div class="accordion-inner">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                            Scodella con uccello: la scheda
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                            Scodella: il modello 3D
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            Mentre scavavamo, trovammo qualcosa di rosso ed inquietante. Troppo tardi ci rendemmo conto che si trattava del cappuccio di una penna. Ormai il danno era fatto, lo strato era inquinato. Chiamammo le ruspe e lo smontammo.
+                                        <br>
+                                        <br>
+                                        <div>
+                                            <canvas id='view-1' width=200 height=150></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="nuovecampagne">
+                    <div class="hero-unit">
+                        <div class="page-header">
+                            <h1>Gli scavi oggi</h1>
+                        </div>
+                        Phasellus eu erat arcu. Vivamus euismod, massa id interdum feugiat, diam purus vehicula urna, quis tempor dui neque eget tortor. Morbi quis semper leo. Sed mattis consectetur risus a tincidunt. Curabitur venenatis molestie convallis. Nunc vestibulum, orci et dictum ullamcorper, diam purus euismod libero, at rhoncus purus sem non purus. Duis eget purus in diam sodales varius eget vel risus. Maecenas porttitor mattis fermentum. Phasellus non quam mauris, at tempor libero. In in nisi eu mi fringilla ultrices. Praesent consectetur lacus vitae enim adipiscing ultricies. Nam ultrices ornare purus, et molestie diam scelerisque vitae. Duis laoreet, risus a feugiat sodales, nisi leo elementum ipsum, in feugiat enim ipsum ut lorem. Nam felis massa, mollis a semper eget, aliquet in nisi.
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <footer>
+        <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
+    </footer>
+
+    <!-- JS for fast page loading -->
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="js/bootstrap-scrollspy.js"></script>
+
+    <!-- webgl detection test script -->
+    <script type="text/javascript" src="js/webgl-utils.js"></script>
+    <script>
+        function init() {
+            canvas = document.getElementById("view-1");
+            gl = WebGLUtils.setupWebGL(canvas);
+            if (gl != null) {
+                // 3D webgl
+            }
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>

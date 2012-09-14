@@ -1,1 +1,3 @@
-wfs.map
+ark-scrmap/wfs.map
+ark-scrmap/wsgi/golden_retriever.py
+ark-scrmap/wsgi/stats.py

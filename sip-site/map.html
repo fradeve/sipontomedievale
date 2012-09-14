@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang='it'>
+<head>
+    <META charset='utf-8'/>
+    <title>Siponto / GIS</title>
+    <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="js/jquery-pageslide/jquery.pageslide.css">
+    <!-- define a custom color for text in modal and popover, unreadable by default -->
+    <style type="text/css">
+        .modal-text-color { color: black; }
+        .popover-title-text-color { color: black; }
+    </style>
+</head>
+<body onload="init()">
+    <!-- navbar start -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Siponto medievale</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="#">GIS</a></li>
+                        <li><a href="tour.html">WebTour</a></li>
+                        <li><a href="story.html">Storia</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- navbar end -->
+
+    <div class="container">
+        <div class="hero-unit">
+            <h2>Esplora lo scavo<h2>
+            <p>Questa mappa permette di esplorare ed osservare come si è evoluto lo scavo dell'insediamento medievale di Siponto; seleziona un tipo di unità stratigrafica, posiziona il mouse su una di esse, e con un click potrai scoprire cosa è stato trovato in quel punto.</p>
+            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="myModalLabel">Come si usa la mappa?</h3>
+                </div>
+                <div class="modal-body modal-text-color">
+                    <p>Qui spieghiamo come si usa la mappa, cosa sono le US e tutte queste menate</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large"><i class="icon-question-sign icon-white"></i> Come funziona?</a>
+        </div>
+    </div>
+
+    <!-- start SCR hidden content -->
+    <div id="responseSCR" style="display:none"></div>
+    <!-- end SCR hidden content -->
+
+    <!-- start map + layer selection bar -->
+    <div id='map_element' style='height: 600px;'></div>
+
+    <div id="navbar-example" class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container" style="width: auto;">
+                <ul class="nav">
+                    <li><p class="navbar-text">Scegli il tipo di US:</p></li>
+                    <li>
+                        <div class="btn-group" data-toggle="buttons-radio" >
+                        <button type="button" class="btn" name="usstatus" value="usm">USM</button>
+                        <button type="button" class="btn" name="usstatus" value="uss">USS</button>
+                        </div>
+                    </li>
+                </ul>
+                <a id="statistics" class="btn large primary" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a>
+            </div>
+        </div>
+    </div>
+    <!-- end map + layer selection bar -->
+    <br>
+    <div class="container">
+        <div class="hero-unit">
+            <h2>Come funziona uno scavo archeologico?<h2>
+            <p>Qui ve lo spieghiamo, con calma.</p>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
+    </footer>
+
+    <!-- JS for fast page loading -->
+    <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="js/jquery-pageslide/jquery.pageslide.min.js"></script>
+    <script>
+    // popover options
+        $(function () {
+            $("#statistics").popover(
+                {
+                    placement : 'top',
+                }
+            );
+        });
+    </script>
+
+    <!-- geo-JS -->
+    <script type='text/javascript' src='../ark-scrmap/js/openlayers/OpenLayers.js'></script>
+    <script type="text/javascript" src='../ark-scrmap/js/map.js'></script>
+    <script type='text/javascript' charset='utf-8'>
+        $(document).ready(function () {
+            $('div.btn-group button').click(function(){
+                var us_type = $(this).val();
+                console.log(us_type);
+                addSelectedLayer(us_type);
+            })
+        })
+    </script>
+</body>
+</html>
