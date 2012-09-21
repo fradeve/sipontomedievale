@@ -123,7 +123,7 @@ function addSelectedLayer(USType) {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/sip-site/ark-oia/wfs.map&service=WFS',
+            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
             featureType : USType
         })
         // TODO: instead of dividing USes on different layers, try to keep them

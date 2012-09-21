@@ -1,0 +1,21 @@
+var dig = {
+    bounds : new OpenLayers.Bounds(15.887377,41.607326,15.893637,41.611088),
+    center : new OpenLayers.LonLat(15.89128,41.609685)
+};
+
+
+$("#help").popover({
+        placement : 'top',
+        html : true,
+        content : helpPopContent
+}).hover(function(e){
+    $('#helptour1').click(function() {
+        $("#help").popover('toggle');
+        $("#useful-container").popover({
+                placement : 'left',
+                html : true,
+                content : helpPopContent
+        });
+        $('#useful-container').popover('show')
+    })
+})

@@ -8,7 +8,7 @@
 "[STEVELOSH] http://stevelosh.com/blog/2011/06/django-advice/#editing-with-vim
 
 " ### useful plugins ###
-call vam#ActivateAddons(["ctags%610","snipMate","Tagbar","tlib","TaskList","Better_Javascript_Indentation", "L9", "AutoComplPop"], {"force_loading_plugins_now": 1})
+call vam#ActivateAddons(["ctags%610","snipMate","Tagbar","tlib","TaskList","Better_Javascript_Indentation", "L9", "AutoComplPop", "Syntastic"], {"force_loading_plugins_now": 1})
 
 " * [Tagbar] https://github.com/majutsushi/tagbar
 let g:tagbar_left = 1

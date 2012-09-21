@@ -5,6 +5,7 @@
     <title>Siponto / GIS</title>
     <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-pageslide/jquery.pageslide.css">
+
     <!-- define a custom color for text in modal and popover, unreadable by default -->
     <style type="text/css">
         .modal-text-color { color: black; }
@@ -70,12 +71,19 @@
                     <li><p class="navbar-text">Scegli il tipo di US:</p></li>
                     <li>
                         <div class="btn-group" data-toggle="buttons-radio" >
-                        <button type="button" class="btn" name="usstatus" value="usm">USM</button>
-                        <button type="button" class="btn" name="usstatus" value="uss">USS</button>
+                            <button type="button" class="btn" name="usstatus" value="usm">USM</button>
+                            <button type="button" class="btn" name="usstatus" value="uss">USS</button>
                         </div>
                     </li>
                 </ul>
                 <a id="statistics" class="btn large primary" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a>
+                <ul class="nav pull-right">
+                    <li>
+                        <div class="btn-group">
+                            <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i></a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

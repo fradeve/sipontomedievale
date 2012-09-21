@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <title>Siponto Medievale</title>
 
-    <!-- stylesheets -->
     <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
+
+    <!-- popover style -->
+    <style>
+        .popSourceBlock {
+            display:none;
+        }
+    </style>
+
     <!-- load default css for OpenLayers and modify Pan buttons positions -->
     <link rel="stylesheet" href="../ark-scrmap/js/openlayers/theme/default/style.css" type="text/css">
     <!--<style type="text/css">
@@ -88,7 +95,7 @@
     <!-- heading hero unit -->
     <div class="container">
         <div class="hero-unit">
-            <h1>Wow, un tour virtuale<h1>
+            <h1>Un salto nello scavo<h1>
             <p>Ma sono bravi, questi. Come hai detto che si chiamano?</p>
         </div>
     </div>
@@ -98,34 +105,148 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <div id="useful-container">
+                <div id="useful-container" style="margin-bottom: -6px;">
                     <canvas id="panorama-div">
                     </canvas>
+                </div>
+                <div id="navbar-example" class="navbar navbar-static-top">
+                    <div class="navbar-inner">
+                        <div class="container" style="width: auto;">
+                            <ul class="nav">
+                                <li>
+                                    <div id="zoom-buttons" class="btn-group">
+                                        <button class="btn" type="zoomIn"><a class="icon-plus icon-white"></a></button>
+                                        <button class="btn" type="zoomOut"><a class="icon-minus icon-white"></a></button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="nav">
+                                <li>
+                                    <div class="btn-group" id="fullscreenButton">
+                                        <button class="btn" type="fullscreenButton"><a class="icon-fullscreen icon-white"></a></button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li>
+                                    <div class="btn-group" id="pano-move">
+                                        <button class="btn" type="panoPrev"><a class="icon-chevron-left icon-white"></a></button>
+                                        <button class="btn" type="panoNext"><a class="icon-chevron-right icon-white"></a></button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li>
+                                    <div class="btn-group">
+                                        <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <div id='map_element' style='height: 350px;'></div>
+                </div>
+                <div class="span6">
+                    <!-- TODO http://css-tricks.com/examples/CustomizedScroll/ -->
+                    <div id='description' style="overflow-y: auto; height: 350px"></div>
+                </div>
+            </div>
+    </div>
     <!-- end panorama unit -->
-
-    <!-- start map unit -->
-    <div id='map_element' style='width: 500px; height: 500px;'></div>
-    <!-- end map unit -->
 
     <hr>
     <footer>
-        <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
+        <div id="footer">
+            <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
+        </div>
     </footer>
 
+    <div id="pop1_content" class="popSourceBlock">
+        <div class="popPlacement">top</div>
+        <div class="popId">pop1</div>
+        <div class="popTitle">
+            Aiuto
+        </div>
+        <div class="popContent">
+            <p>Serve aiuto? Prova il tour guidato delle funzioni!</p>
+        </div>
+    </div>
+    <div id="pop2_content" class="popSourceBlock">
+        <div class="popPlacement">bottom</div>
+        <div class="popId">useful-container</div>
+        <div class="popTitle">
+            I panorami
+        </div>
+        <div class="popContent">
+            <p>In questa finestra c'è il panorama</p>
+        </div>
+    </div>
+    <div id="pop3_content" class="popSourceBlock">
+        <div class="popPlacement">top</div>
+        <div class="popId">zoom-buttons</div>
+        <div class="popTitle">
+            Zoom
+        </div>
+        <div class="popContent">
+            <p>Qui puoi ingrandire e rimpicciolire l'immagine</p>
+        </div>
+    </div>
+    <div id="pop4_content" class="popSourceBlock">
+        <div class="popPlacement">right</div>
+        <div class="popId">fullscreenButton</div>
+        <div class="popTitle">
+            Schermo pieno
+        </div>
+        <div class="popContent">
+            <p>Qui puoi ingrandire e rimpicciolire l'immagine</p>
+        </div>
+    </div>
+    <div id="pop5_content" class="popSourceBlock">
+        <div class="popPlacement">right</div>
+        <div class="popId">map_element</div>
+        <div class="popTitle">
+            La mappa
+        </div>
+        <div class="popContent">
+            <p>Seleziona, tieni premuto e trascina il cursore per spostare il punto di vista dell'osservatore su un nuovo punto panoramico; una volta rilasciato, il punto di vista si posizionerà automaticamente su quello più vicino.</p>
+        </div>
+    </div>
+    <div id="pop6_content" class="popSourceBlock">
+        <div class="popPlacement">top</div>
+        <div class="popId">pano-move</div>
+        <div class="popTitle">
+            Avanti-Indietro
+        </div>
+        <div class="popContent">
+            <p>Puoi muoverti tra i panorami disponibili lungo il percorso semplicemente premendo uno di questi due pusanti: destra per andare avanti e sinistra per tornare indietro.</p>
+        </div>
+    </div>
+    <div id="pop7_content" class="popSourceBlock">
+        <div class="popPlacement">left</div>
+        <div class="popId">description</div>
+        <div class="popTitle">
+            Descrizione
+        </div>
+        <div class="popContent">
+            <p>Un sacco di chiacchiere</p>
+        </div>
+    </div>
+
     <!-- JS for fast page loading -->
-    <script src="js/jquery-1.8.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <!-- geo JS -->
     <script type='text/javascript' src='../ark-scrmap/js/openlayers/OpenLayers.js'></script>
     <script type="text/javascript" src='js/panomap.js'></script>
-    <script>
-        startmap();
-    </script>
 
     <!-- webgl detection test script -->
     <script type="text/javascript" src="js/webgl-utils.js"></script>
@@ -134,16 +255,110 @@
             canvas = document.getElementById("panorama-div");
             gl = WebGLUtils.setupWebGL(canvas);
             if (gl != null) {
-                // WebGL panorama viewer
-                // NOTE: since it seems that webgl-utils.js only supports '<canvas>' detection
-                // and I cannot put an '<iframe>' into '<canvas>', I've put a canvas only for
-                // WebGL checking purposes; it will be removed if WebGL is ok and substituted
-                // with <iframe> containing panorama viewer.
+                //// WebGL check ////
+                /* NOTE: since it seems that webgl-utils.js only supports '<canvas>' detection
+                 * and I cannot put an '<iframe>' into '<canvas>', I've put a canvas only for
+                 * WebGL checking purposes; it will be removed if WebGL is ok and substituted
+                 * with <iframe> containing panorama viewer.
+                 */
                 $("#panorama-div").remove()
-                $("#useful-container").html('<iframe title="pannellum panorama viewer" width="800" height="300" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-style:none;" id="pannellum_7DV1CB6d4a" src="js/pannellum/build/pannellum.htm?panorama=../../../img/panos/pano1.jpg&amp;title=Prova%20panorama&amp;author=Fradeve&amp;autoload=yes"></iframe>');
+
+                //// start default panorama ////
+                startmap();
+
+                // wait for POI layer loaded, than...
+                poi_layer.events.register('loadend', poi_layer, function(evt) {
+                    //...load POV
+                    startPov(viewpos, poi_layer);
+                    //...load default panorama
+                    loadPano(findStartPoint(poi_layer), "pannellum_7DV1CB6d4a", "useful-container");
+                })
+
             }
         }
         window.onload = init;
+    </script>
+
+    <!-- bootstrap buttons -->
+    <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
+
+    <!-- buttons -->
+    <script>
+        $(document).ready(function () {
+            $('[type="zoomIn"]').click(function(){
+                document.getElementById("pannellum_7DV1CB6d4a").contentWindow.zoomIn(5)
+            });
+
+            $('[type="zoomOut"]').click(function(){
+                document.getElementById("pannellum_7DV1CB6d4a").contentWindow.zoomOut(5)
+            });
+
+            $('[type="fullscreenButton"]').click(function(){
+                document.getElementById("pannellum_7DV1CB6d4a").contentWindow.toggleFullWindow()
+            });
+
+            $('[type="panoPrev"]').click(function(){
+                viewptft.move(new OpenLayers.LonLat(movePano(poi_layer, "prev").geometry.x, movePano(poi_layer, "prev").geometry.y));
+                loadPano(movePano(poi_layer, "prev"), "pannellum_7DV1CB6d4a", "useful-container");
+            });
+
+            $('[type="panoNext"]').click(function(){
+                viewptft.move(new OpenLayers.LonLat(movePano(poi_layer, "next").geometry.x, movePano(poi_layer, "next").geometry.y));
+                loadPano(movePano(poi_layer, "next"), "pannellum_7DV1CB6d4a", "useful-container");
+            });
+
+            // popover help tour //
+
+            /* start function whenever an element with class ".pop-trigger"
+             * is clicked (a button); the ".on" statement assign action also
+             * to elements not even created (buttons are added to DOM dinamically)
+             * http://stackoverflow.com/questions/10252060/how-do-i-run-a-jquery-function-after-the-a-div-have-been-added-to-the-dom */
+            activePopover = null;
+
+            jQuery(document).on('click', '.pop-trigger', function(){
+                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover('destroy');
+                curHelpElement = nextHelpElement;
+                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover({
+                    html : true,
+                    placement : getPopPlacement(curHelpElement),
+                    title : getPopTitle(curHelpElement),
+                    content : helpTourPopContent(curHelpElement)
+                });
+                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover('show');
+                $('.popover').attr('id', ('div'+nextHelpElement));
+            });
+
+            function helpTourPopContent(target) {
+                var message = $("#" + target + "_content > div.popContent").html();
+                curHelpElement = target;
+                nextHelpElement = 'pop'+(parseInt(target[3])+1).toString();
+                var arrow = {
+                    start : 'Inizia qui <i class="icon-arrow-right icon-white"></i>',
+                    next : 'Avanti <i class="icon-arrow-right icon-white"></i>'
+                }
+                var buttonNextPop = '<br><center><a id="' + nextHelpElement + '" class="btn btn-info pop-trigger" href="' + ('#'+('divpop'+(parseInt(nextHelpElement[3])+1).toString())) + '">' + ((parseInt(target[3])==1) ? arrow.start : arrow.next) + '</a><center>'
+                return (message + buttonNextPop)
+            };
+
+            function getPopTitle(target) {
+                    return $("#" + target + "_content > div.popTitle").html();
+            };
+
+            function getPopPlacement(target) {
+                    return $("#" + target + "_content > div.popPlacement").html();
+            };
+
+            $("#pop1").click(function() {
+                activePopover = $(this);
+                $(this).popover({
+                    html : true,
+                    placement : getPopPlacement(activePopover.attr("id")),
+                    content : helpTourPopContent(activePopover.attr("id")),
+                    title : getPopTitle(activePopover.attr("id"))
+                })
+            });
+        });
     </script>
 </body>
 </html>

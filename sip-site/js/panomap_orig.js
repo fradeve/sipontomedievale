@@ -8,10 +8,6 @@ var _projObj = {
     mercator : new OpenLayers.Projection('EPSG:900913')
 };
 
-// POV vars
-var currentPov;
-
-// marker index
 var SHADOW_Z_INDEX = 10;
 var MARKER_Z_INDEX = 11;
 
@@ -46,26 +42,13 @@ function startPov(povLayer, poiLayer) {
 
     startPoint = findStartPoint(poiLayer);
     viewptft.move(new OpenLayers.LonLat(startPoint.geometry.x, startPoint.geometry.y));
-
-    drag = new OpenLayers.Control.DragFeature(viewpos, {
-        autoActivate: true,
-        onComplete: function() {
-            var nearest = findClosest(viewpoint, poiLayer);
-            viewptft.move(new OpenLayers.LonLat(nearest.geometry.x, nearest.geometry.y));
-            console.log(nearest.attributes.desc);
-            loadPano(nearest, "pannellum_7DV1CB6d4a", "useful-container");
-        }
-    })
-    map.addControl(drag);
-    drag.activate();
 };
 
 
 function loadPano(poi, iframeId, containerId) {
-    currentPov = poi;
-    pannellum_iframe = '<iframe title="pannellum panorama viewer" width="100%" height="300" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-style:none;" id="' + iframeId + '" src="js/pannellum/build/pannellum.htm?panorama=../../../img/panos/pano' + poi.attributes.id + '.jpg&amp;title=' + poi.attributes.title + '&amp;autoload=yes"></iframe>';
+    pannellum_iframe = '<iframe title="pannellum panorama viewer" width="800" height="300" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-style:none;" id="' + iframeId + '" src="js/pannellum/build/pannellum.htm?panorama=../../../img/panos/pano' + poi.attributes.id + '.jpg&amp;title=' + poi.attributes.title + '&amp;autoload=yes"></iframe>';
+
     $('#' + containerId).html(pannellum_iframe);
-    $('#description').html(poi.attributes.desc);
 
     document.getElementById(iframeId).onload = function() {
         this.contentWindow.zoomIn(poi.attributes.zoomIn);
@@ -73,18 +56,22 @@ function loadPano(poi, iframeId, containerId) {
 };
 
 
-function movePano(poiLayer, where) {
-    if (where == "next"){
-        var newPano = "pano." + ((parseInt(currentPov.fid.split('.')[1])+1).toString());
-    }else{
-        newPano = "pano." + ((parseInt(currentPov.fid.split('.')[1])-1).toString());
-    }
-    var newPoint = poiLayer.getFeatureByFid(newPano);
-    if (newPoint === null) {
-        return currentPov
-    }else{
-        return newPoint
-    }
+function startDrag(povLayer, poiLayer) {
+    // add dragging to point
+    drag = new OpenLayers.Control.DragFeature(viewpos, {
+        autoActivate: true,
+        onComplete: function() {
+            // move viewer position to nearest panorama POI
+            var nearest = findClosest(viewpoint, poi_layer);
+            viewptft.move(new OpenLayers.LonLat(nearest.geometry.x, nearest.geometry.y));
+            console.log(nearest.attributes.desc);
+
+            loadPano(nearest, "pannellum_7DV1CB6d4a", "useful-container");
+        }
+    });
+
+    map.addControl(drag);
+    drag.activate();
 };
 
 
@@ -104,7 +91,7 @@ function startmap() {
                 {zoomWheelEnabled : false}
             ),
             //displays the pan tools
-            //new OpenLayers.Control.PanPanel(),
+            new OpenLayers.Control.PanPanel(),
             //displays the zoom tools
             new OpenLayers.Control.ZoomPanel(),
         ],
@@ -152,10 +139,9 @@ function startmap() {
                     externalGraphic : "img/map_icons/panoramicview.png",
                     backgroundGraphic : "img/marker_shadow.png",
                     backgroundXOffset : 0,
-                    backgroundYOffset : -20,
+                    backgroundYOffset : -7,
                     graphicZIndex: MARKER_Z_INDEX,
                     backgroundGraphicZIndex: SHADOW_Z_INDEX,
-                    graphicYOffset: -28,
                     pointRadius : 15 
                 }
             )
@@ -163,4 +149,5 @@ function startmap() {
     );
 
     map.addLayer(viewpos);
+
 }
