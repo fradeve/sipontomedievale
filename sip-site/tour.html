@@ -69,6 +69,7 @@
                         <li class="active"><a href="#">WebTour</a></li>
                         <li><a href="story.html">Storia</a></li>
                         <li><a href="info.html">Info</a></li>
+                        <li><a href="download.html">Download</a></li>
                     </ul>
                 </div>
             </div>
@@ -138,7 +139,7 @@
                             <ul class="nav pull-right">
                                 <li>
                                     <div class="btn-group">
-                                        <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i></a>
+                                        <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i> Aiuto</a>
                                     </div>
                                 </li>
                             </ul>
@@ -186,7 +187,7 @@
             I panorami
         </div>
         <div class="popContent">
-            <p>In questa finestra c'è il panorama</p>
+            <p>In questa finestra c'è il panorama: premi in un punto e trascina il cursore per spostare il punto di vista; nel riquadro in basso a sinistra è riportato il nome del punto. Una volta fatto click con il mouse all'interno della finestra, puoi anche usare i tasti freccia della tastiera per spostare il panorama.</p>
         </div>
     </div>
     <div id="pop3_content" class="popSourceBlock">
@@ -196,7 +197,7 @@
             Zoom
         </div>
         <div class="popContent">
-            <p>Qui puoi ingrandire e rimpicciolire l'immagine</p>
+            <p>Con questi pulsanti puoi ingrandire e rimpicciolire il panorama per osservarne i dettagli.</p>
         </div>
     </div>
     <div id="pop4_content" class="popSourceBlock">
@@ -206,7 +207,7 @@
             Schermo pieno
         </div>
         <div class="popContent">
-            <p>Qui puoi ingrandire e rimpicciolire l'immagine</p>
+            <p>Questo pulsante serve ad ingrandire il panorama alla dimensione massima possibile, quella del tuo computer. Provalo, ti sembrerà di essere nello scavo!</p>
         </div>
     </div>
     <div id="pop5_content" class="popSourceBlock">
@@ -236,7 +237,7 @@
             Descrizione
         </div>
         <div class="popContent">
-            <p>Un sacco di chiacchiere</p>
+            <p>Questa è la descrizione del panorama che stai osservando: riporta notizie storiche sulla zona e sugli elementi più interessanti che si trovano in essa.</p>
         </div>
     </div>
 
@@ -307,58 +308,9 @@
                 viewptft.move(new OpenLayers.LonLat(movePano(poi_layer, "next").geometry.x, movePano(poi_layer, "next").geometry.y));
                 loadPano(movePano(poi_layer, "next"), "pannellum_7DV1CB6d4a", "useful-container");
             });
-
-            // popover help tour //
-
-            /* start function whenever an element with class ".pop-trigger"
-             * is clicked (a button); the ".on" statement assign action also
-             * to elements not even created (buttons are added to DOM dinamically)
-             * http://stackoverflow.com/questions/10252060/how-do-i-run-a-jquery-function-after-the-a-div-have-been-added-to-the-dom */
-            activePopover = null;
-
-            jQuery(document).on('click', '.pop-trigger', function(){
-                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover('destroy');
-                curHelpElement = nextHelpElement;
-                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover({
-                    html : true,
-                    placement : getPopPlacement(curHelpElement),
-                    title : getPopTitle(curHelpElement),
-                    content : helpTourPopContent(curHelpElement)
-                });
-                $('#'+($('#' + curHelpElement + "_content > div.popId").html())).popover('show');
-                $('.popover').attr('id', ('div'+nextHelpElement));
-            });
-
-            function helpTourPopContent(target) {
-                var message = $("#" + target + "_content > div.popContent").html();
-                curHelpElement = target;
-                nextHelpElement = 'pop'+(parseInt(target[3])+1).toString();
-                var arrow = {
-                    start : 'Inizia qui <i class="icon-arrow-right icon-white"></i>',
-                    next : 'Avanti <i class="icon-arrow-right icon-white"></i>'
-                }
-                var buttonNextPop = '<br><center><a id="' + nextHelpElement + '" class="btn btn-info pop-trigger" href="' + ('#'+('divpop'+(parseInt(nextHelpElement[3])+1).toString())) + '">' + ((parseInt(target[3])==1) ? arrow.start : arrow.next) + '</a><center>'
-                return (message + buttonNextPop)
-            };
-
-            function getPopTitle(target) {
-                    return $("#" + target + "_content > div.popTitle").html();
-            };
-
-            function getPopPlacement(target) {
-                    return $("#" + target + "_content > div.popPlacement").html();
-            };
-
-            $("#pop1").click(function() {
-                activePopover = $(this);
-                $(this).popover({
-                    html : true,
-                    placement : getPopPlacement(activePopover.attr("id")),
-                    content : helpTourPopContent(activePopover.attr("id")),
-                    title : getPopTitle(activePopover.attr("id"))
-                })
-            });
         });
     </script>
+
+    <script type="text/javascript" src="js/bootstrap-helptour.js"></script>
 </body>
 </html>

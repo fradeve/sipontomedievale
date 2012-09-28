@@ -37,14 +37,53 @@ function init() {
         ],
 
         projection : _projObj.mercator,
-        displayProjection : _projObj.wgs84
+        displayProjection : _projObj.wgs84,
+		//fractionalZoom: true
     });
 
     var osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
-            transitionEffect: "resize"
+            transitionEffect: 'resize',
+			resolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
+						  19567.87923828125, 9783.939619140625, 4891.9698095703125,
+						  2445.9849047851562, 1222.9924523925781, 611.4962261962891,
+						  305.74811309814453, 152.87405654907226, 76.43702827453613,
+						  38.218514137268066, 19.109257068634033, 9.554628534317017,
+						  4.777314267158508, 2.388657133579254, 1.194328566789627,
+						  0.5971642833948135, 0.25, 0.1, 0.05],
+			serverResolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
+								19567.87923828125, 9783.939619140625,
+								4891.9698095703125, 2445.9849047851562,
+								1222.9924523925781, 611.4962261962891,
+								305.74811309814453, 152.87405654907226,
+								76.43702827453613, 38.218514137268066,
+								19.109257068634033, 9.554628534317017,
+								4.777314267158508, 2.388657133579254,
+								1.194328566789627, 0.5971642833948135]
         });
 
     map.addLayers([osm_layer]);
+
+    poi_layer = new OpenLayers.Layer.Vector("PanoPOIs", {
+        strategies : [new OpenLayers.Strategy.Fixed()],
+        projection : _projObj.wgs84,
+        visibility : false,
+        displayInLayerSwitcher : false,
+        protocol : new OpenLayers.Protocol.WFS({
+            version : '1.0.0',
+            // TODO: try WFS 1.1.0 and OL reprojection
+            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
+            featureType : 'pano'
+        }),
+		styleMap: new OpenLayers.StyleMap({
+				externalGraphic : "img/map_icons/panoramicview_simple.png",
+				graphicZIndex: 11,
+				graphicYOffset: -28,
+				pointRadius : 15 
+			})
+    });
+
+    map.addLayer(poi_layer);
+
     var gargano = new OpenLayers.Bounds(15.66,41.60,16.14,41.91);
     map.zoomToExtent(gargano.transform(_projObj.wgs84, _projObj.mercator))
 };
@@ -111,8 +150,8 @@ function addSelectedLayer(USType) {
     // var regExp = /Simple/g
     // var testString = "Simple Geometry"
     // f(regExp.test(testString)) {alert("c'è!")}
-    if (map.layers.length > 1) {
-        map.layers[1].destroy()
+    if (map.layers.length > 2) {
+        map.layers[2].destroy()
     };
 
     uses_layer = new OpenLayers.Layer.Vector("US Layer", {
@@ -126,8 +165,6 @@ function addSelectedLayer(USType) {
             url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
             featureType : USType
         })
-        // TODO: instead of dividing USes on different layers, try to keep them
-        // on the same layer, and use filters to switch
     });
 
     map.addLayers([uses_layer])
@@ -145,6 +182,7 @@ function addSelectedLayer(USType) {
         {
             multiple : false,
             toggle : true,
+            renderIntent: "select",
             onSelect : onSelect,
             onUnselect : onUnselect
         });
@@ -163,4 +201,76 @@ function addSelectedLayer(USType) {
 
     highlightCtrl.activate();
     selectFeatureCtrl.activate();
+
+    default_style = new OpenLayers.Style({
+        fill: true,
+        fillColor: '#C0C0C0',
+        fillOpacity: 0.5,
+        strokeColor: 'white'
+    });
+
+    select_style = new OpenLayers.Style({
+        fill: true,
+        fillColor: '#00FF00',
+        fillOpacity: 0.5,
+        strokeColor: 'white'
+    });
+
+    temporary_style = new OpenLayers.Style({
+        fill: true,
+        fillColor: '#FFCC33',
+        fillOpacity: 0.5,
+        strokeColor: 'white'
+    });
+
+    us_styleMap = new OpenLayers.StyleMap({
+        'default' : default_style,
+        'select' : select_style,
+        'temporary' : temporary_style
+    });
+
+    uses_layer.styleMap = us_styleMap
+};
+
+
+function toggleMultiLayer(layername) {
+	var curlayer = map.getLayersBy('name', layername)[0]
+	if (curlayer.visibility) {
+		curlayer.setVisibility(false)
+	}else{
+		curlayer.setVisibility(true);
+	};
+    curlayer.events.register('loadend', curlayer, function(evt) {
+
+        // zoom to layer extent function after complete layer loading
+        map.zoomToExtent(curlayer.getDataExtent())
+    })
+};
+
+
+function getValuesInterval(layername, attribute) {
+	var curlayer = map.getLayersBy('name', layername)[0]
+
+    var min = 1000000000000000;
+    var minValue = null;
+    for (var i = 0; i < curlayer.features.length; i++) {
+        var value = curlayer.features[i].attributes[attribute];
+        if (value < min) {
+            minValue = curlayer.features[i].attributes[attribute];
+            min = value
+        }
+    }
+
+    var max = 0;
+    var maxValue = null;
+    for (var i = 0; i < curlayer.features.length; i++) {
+        var value = curlayer.features[i].attributes[attribute];
+        if (value > max) {
+            maxValue = curlayer.features[i].attributes[attribute];
+            max = value
+        }
+    }
+
+    interval = (maxValue - minValue);
+    return interval
 }
