@@ -5,9 +5,9 @@
 var map;
 var _projObj = {
     wgs84 : new OpenLayers.Projection('EPSG:4326'),
-    mercator : new OpenLayers.Projection('EPSG:900913')
+    mercator : new OpenLayers.Projection('EPSG:900913'),
+    osm_wms : new OpenLayers.Projection('EPSG:3857')
 };
-
 
 function init() {
     map = new OpenLayers.Map('map_element', {
@@ -17,8 +17,10 @@ function init() {
             128 * 156543.0339,
             128 * 156543.0339),
 
-        maxResolution : 156543.0339,
+        maxResolution : 156543.03390625,
+	numZoomLevels : 23,
         units : 'm',
+        theme: null,
 
         controls:[
             //allows user pan/zoom ability
@@ -27,39 +29,41 @@ function init() {
             ),
              
             //displays the pan/zoom tools
-            new OpenLayers.Control.PanZoom(),
-             
-            //displays a layer switcher
-            new OpenLayers.Control.LayerSwitcher()
-
-            //displays nice attribution
-            //new OpenLayers.Control.Attribution()
+            new OpenLayers.Control.ZoomPanel()
         ],
 
         projection : _projObj.mercator,
-        displayProjection : _projObj.wgs84,
-		//fractionalZoom: true
+        displayProjection : _projObj.wgs84
     });
 
+    /* ### test 1: Layer.OSM */
     var osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
-            transitionEffect: 'resize',
-			resolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
-						  19567.87923828125, 9783.939619140625, 4891.9698095703125,
-						  2445.9849047851562, 1222.9924523925781, 611.4962261962891,
-						  305.74811309814453, 152.87405654907226, 76.43702827453613,
-						  38.218514137268066, 19.109257068634033, 9.554628534317017,
-						  4.777314267158508, 2.388657133579254, 1.194328566789627,
-						  0.5971642833948135, 0.25, 0.1, 0.05],
-			serverResolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
-								19567.87923828125, 9783.939619140625,
-								4891.9698095703125, 2445.9849047851562,
-								1222.9924523925781, 611.4962261962891,
-								305.74811309814453, 152.87405654907226,
-								76.43702827453613, 38.218514137268066,
-								19.109257068634033, 9.554628534317017,
-								4.777314267158508, 2.388657133579254,
-								1.194328566789627, 0.5971642833948135]
-        });
+        resolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
+                      19567.87923828125, 9783.939619140625, 4891.9698095703125,
+                      2445.9849047851562, 1222.9924523925781, 611.4962261962891,
+                      305.74811309814453, 152.87405654907226, 76.43702827453613,
+                      38.218514137268066, 19.109257068634033, 9.554628534317017,
+                      4.777314267158508, 2.388657133579254, 1.194328566789627,
+                      0.5971642833948135, 0.25, 0.1, 0.05],
+        serverResolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
+                            19567.87923828125, 9783.939619140625,
+                            4891.9698095703125, 2445.9849047851562,
+                            1222.9924523925781, 611.4962261962891,
+                            305.74811309814453, 152.87405654907226,
+                            76.43702827453613, 38.218514137268066,
+                            19.109257068634033, 9.554628534317017,
+                            4.777314267158508, 2.388657133579254,
+                            1.194328566789627, 0.5971642833948135],
+	transitionEffect: 'resize'
+    });
+
+    /* ### test 1: Layer.WMS
+    var osm_layer = new OpenLayers.Layer.WMS('OSM Layer', 'http://irs.gis-lab.info/', {
+	layers : 'osm'
+    }, {
+	//projection : _projObj.osm_wms,
+	//units : 'm',
+    }); */
 
     map.addLayers([osm_layer]);
 
@@ -272,5 +276,9 @@ function getValuesInterval(layername, attribute) {
     }
 
     interval = (maxValue - minValue);
-    return interval
+    return {
+        'interval': interval,
+        'maxFeat': maxValue,
+        'minFeat': minValue
+    }
 }

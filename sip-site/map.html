@@ -5,7 +5,8 @@
     <title>Siponto / GIS</title>
     <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-pageslide/jquery.pageslide.css">
-    <link type="text/css" href="js/jquery-ui/themes/le-frog/jquery-ui-1.8.23.custom.css" rel="Stylesheet" />
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/le-frog/jquery-ui-1.8.23.custom.css">
+    <link rel="stylesheet" type="text/css" href="../ark-scrmap/js/openlayers/theme/default/style_custom.css">
 
     <!-- popover style -->
     <style>
@@ -15,11 +16,17 @@
         .popFakeElement {
             display:none;
         }
+        .hidden-div {
+            display:none;
+        }
         .slider-div {
             padding: 10px !important;
             width:230px;
             position:relative;
             top: 8px;
+        }
+        .dropdown-menu {
+            background-color:#F7F7F7;
         }
     </style>
 
@@ -43,10 +50,10 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="#">GIS</a></li>
-                        <li><a id="webtour_link" href="tour.html">WebTour</a></li>
                         <li><a href="story.html">Storia</a></li>
-                        <li><a href="info.html">Info</a></li>
+                        <li><a href="dig.html">Scavo</a></li>
+                        <li class="active"><a href="#">GIS</a></li>
+                        <li><a href="tour.html">WebTour</a></li>
                         <li><a href="download.html">Download</a></li>
                     </ul>
                 </div>
@@ -89,7 +96,7 @@
             <div class="container" style="width: auto;">
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li><p class="navbar-text">Scegli il tipo di US:</p></li>
+                    <li><p class="navbar-text" style="margin:14px">Scegli il tipo di US:</p></li>
                     <li>
                         <div id="layer-buttons" class="btn-group" data-toggle="buttons-radio" >
                             <button type="button" class="btn needslider" name="US Layer" value="us">US</button>
@@ -110,19 +117,20 @@
                     </li>
                 </ul>
                 <ul class="nav">
-                <div>
-                    <li><a id="statistics" class="btn primary morepopover" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a></li>
-                </div>
+                    <div>
+                        <li><a id="statistics" class="btn primary morepopover" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a></li>
+                    </div>
                 </ul>
-                <ul class="nav">
-                <div>
-                    <li>
-                        <div class="slider-div">
-                            <div id="map_slider"></div>
-                        </div>
-                    </li>
+                <div id="us-opt-div" class="hidden-div">
+                    <ul class="nav">
+                        <li><p class="navbar-text" style="margin:14px">Azioni per US:</p></li>
+                        <li>
+                            <div class="slider-div">
+                                <div id="map_slider" style="height:9px"></div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                </ul>
                 <ul class="nav pull-right">
                     <li>
                         <div class="btn-group">
@@ -136,12 +144,6 @@
     </div>
     <!-- end map + layer selection bar -->
     <br>
-    <div class="container">
-        <div class="hero-unit">
-            <h2>Come funziona uno scavo archeologico?<h2>
-                <p>Qui ve lo spieghiamo, con calma, e con i dovuti <a href="#" rel="tooltip" title="definizione">suggerimenti</a>.</p>
-        </div>
-    </div>
     <hr>
     <footer>
         <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
@@ -197,6 +199,16 @@
             <p>Questo pulsante permette, dopo aver selezionato un layer ed una unità stratigrafica, di ottenere delle statistiche sullo scavo e sull'unità stessa.</p>
         </div>
     </div>
+    <div id="pop6_content" class="popSourceBlock">
+        <div class="popPlacement">top</div>
+        <div class="popId">us-opt-div</div>
+        <div class="popTitle">
+            Scorrimento
+        </div>
+        <div class="popContent">
+            <p>Dopo aver selezionato una US, in questo punto apparirà uno slider, una barra di scorrimento che permette di filtrare gli strati in base alla profondità: portare il cursore verso la fine dello slider significa approfondire lo scavo e mostrare soltanto gli strati più profondi.</p>
+        </div>
+    </div>
 
     <!-- JS for fast page loading -->
     <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.0.min.js"></script>
@@ -223,6 +235,13 @@
         $(document).ready(function () {
             $('div.btn-group button').click(function(){
 
+                /* check if the previous action has left us-opt-div open;
+                 * if so, add hidden-div class, otherwise maintain it as is.*/
+                if ($('#us-opt-div').hasClass('hidden-div')) {
+                }else{
+                    $('#us-opt-div').addClass('hidden-div')
+                }
+
                 // get layer info
                 var us_type = $(this).val();
                 var layer_name = $(this).attr('name');
@@ -234,7 +253,7 @@
                     // wait until layer content finish loading and start slider functions
                     var curlayer = map.getLayersBy('name', layer_name)[0];
                     curlayer.events.register('loadend', curlayer, function(evt) {
-                        var interval = getValuesInterval(curlayer.name, 'n13');
+                        var layerStats = getValuesInterval(curlayer.name, 'n13');
                         
                         $('#map_slider').slider({
                             min: 0,
@@ -244,8 +263,8 @@
                             slide: function(event, ui) {
                                 curlayer.redraw();
                                 var visibleFeatBound = new OpenLayers.Bounds();
-                                var step = ((interval * ui.value)/100);
-                                var maxSelection = (interval - step);
+                                var step = ((layerStats.interval * ui.value)/100);
+                                var maxSelection = (layerStats.maxFeat - step);
                                 console.log(maxSelection);
 
                                 for (var i = 0; i < curlayer.features.length; i++) {
@@ -258,16 +277,20 @@
                                 curlayer.redraw();
                                 setTimeout(function() {
                                     map.zoomToExtent(visibleFeatBound)
-                                }, 1000)
+                                }, 1000);
                                 for (var i = 0; i < curlayer.features.length; i++) {
                                     curlayer.features[i].style = null
                                 }
                             }
+                        });
+
+                        $('#map_slider').tooltip({
+                            title : 'Trascina e rilascia per aumentare la profondità dello scavo'
                         })
+
+                        $('#us-opt-div').removeClass('hidden-div');
                     })
-                }else{
-                    $('.slider-div').html('');
-                }
+                }else{}
             });
 
             $('ul.dropdown-menu a').click(function(){

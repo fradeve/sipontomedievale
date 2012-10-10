@@ -96,15 +96,13 @@ function startmap() {
             128 * 156543.0339,
             128 * 156543.0339
         ),
-        maxResolution : 156543.0339,
+        maxResolution : 156543.03390625,
         units : 'm',
         controls:[
             //allows user pan/zoom ability
             new OpenLayers.Control.Navigation(
                 {zoomWheelEnabled : false}
             ),
-            //displays the pan tools
-            //new OpenLayers.Control.PanPanel(),
             //displays the zoom tools
             new OpenLayers.Control.ZoomPanel(),
         ],
@@ -116,7 +114,8 @@ function startmap() {
 
     // create base map layer, add and center on digging site
     var osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
-            transitionEffect: "resize"
+            transitionEffect: "resize",
+            tileOptions: {crossOriginKeyword: null}
         }
     );
 

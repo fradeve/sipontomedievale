@@ -1,21 +1,30 @@
-var dig = {
-    bounds : new OpenLayers.Bounds(15.887377,41.607326,15.893637,41.611088),
-    center : new OpenLayers.LonLat(15.89128,41.609685)
-};
+## TODO:
 
+== index.html
 
-$("#help").popover({
-        placement : 'top',
-        html : true,
-        content : helpPopContent
-}).hover(function(e){
-    $('#helptour1').click(function() {
-        $("#help").popover('toggle');
-        $("#useful-container").popover({
-                placement : 'left',
-                html : true,
-                content : helpPopContent
-        });
-        $('#useful-container').popover('show')
-    })
-})
+* add contents to timeline
+
+== map.html
+
+* fix slidebar help popover
+* fix hiding features when using slide over value 570
+* add basemap on zooming
+    http://gis.stackexchange.com/questions/2039/how-can-i-switch-baselayers-as-a-user-zooms-in-to-the-map-in-openlayers
+* add 3d layer, sidebar content, explaining modals
+
+== webtour.html
+
+* add photos and descriptions
+
+== history.html
+
+* add contents and link to 3d models
+
+== info.html
+
+* add contents
+
+== download.html
+
+* add Garmin/TomTom POIs
+* add brochure
