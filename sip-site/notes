@@ -1,12 +1,7 @@
 ## TODO:
 
-== index.html
-
-* add contents to timeline
-
 == map.html
 
-* fix slidebar help popover
 * fix hiding features when using slide over value 570
 * add basemap on zooming
     http://gis.stackexchange.com/questions/2039/how-can-i-switch-baselayers-as-a-user-zooms-in-to-the-map-in-openlayers
@@ -19,10 +14,6 @@
 == history.html
 
 * add contents and link to 3d models
-
-== info.html
-
-* add contents
 
 == download.html
 
