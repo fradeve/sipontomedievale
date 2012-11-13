@@ -86,63 +86,104 @@
     <div id="responseSCR" style="display:none"></div>
     <!-- end SCR hidden content -->
 
-    <!-- start map + layer selection bar -->
-    <div id="map_popover">
-        <div id='map_element' style='height: 600px;'></div>
-    </div>
+    <! -- start thingiview div -->
+    <div class="container">
+        <div class="row" style="margin-left: -80px; width: 569px;">
+            <div class="span6 offset3">
+                <div id="my-model" class="collapse" style="display:none">
+                </div>
 
-    <div id="navbar-example" class="navbar navbar-static-top">
-        <div class="navbar-inner">
-            <div class="container" style="width: auto;">
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li><p class="navbar-text" style="margin:14px">Scegli il tipo di US:</p></li>
-                    <li>
-                        <div id="layer-buttons" class="btn-group" data-toggle="buttons-radio" >
-                            <button type="button" class="btn needslider" name="US Layer" value="us">US</button>
-                            <button type="button" class="btn" name="US Layer" value="usm">USM</button>
-                            <button type="button" class="btn" name="US Layer" value="uss">USS</button>
+                <!-- thingiview navbar start -->
+                <div id="navbar-model" class="navbar navbar-static-top collapse" style="width:569px; margin-top: -6px; display:none">
+                    <div class="navbar-inner">
+                        <div class="container" style="width: auto;">
+                            <div class="nav-collapse">
+                                <ul class="nav pull-left">
+                                    <li>
+                                        <div class="btn-group">
+                                            <a class="btn large primary return-sheet"><i class="icon-chevron-left icon-white"></i> Torna alla scheda</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <div class="btn-group">
+                                            <a class="btn large primary return-map">Torna alla mappa <i class="icon-chevron-right icon-white"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-                <ul class="nav" role="navigation">
-                    <li class="dropdown">
-                        <div data-toggle="dropdown">
-                            <a id="multimedia-button" role="button" class="btn dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-play-circle icon-white"></i> Multimedia</a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="multimedia-button">
-                                <li><a tabindex="-1" href="#" value="PanoPOIs"><i class="icon-road"></i> Foto panoramiche</a></li>
-                                <li><a tabindex="-1" href="#" value="3dfindings"><i class="icon-th-large"></i> Reperti 3D</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="nav">
-                    <div>
-                        <li><a id="statistics" class="btn primary morepopover" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a></li>
                     </div>
-                </ul>
-                <div id="us-opt-div" class="hidden-div">
+                </div>
+                <!-- thingiview navbar end -->
+
+            </div>
+        </div>
+    </div>
+    <! -- end thingiview div -->
+
+    <!-- start map + layer selection bar -->
+    <div id="map_collapse" class="collapse in">
+        <div id="map_popover">
+            <div id='map_element' style='height: 600px; background-color:#F1EEE8'></div>
+        </div>
+
+        <div id="navbar-example" class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto;">
+                <div class="nav-collapse">
                     <ul class="nav">
-                        <li><p class="navbar-text" style="margin:14px">Azioni per US:</p></li>
+                        <li><p class="navbar-text" style="margin:14px">Scegli il tipo di US:</p></li>
                         <li>
-                            <div class="slider-div">
-                                <div id="map_slider" style="height:9px"></div>
+                            <div id="layer-buttons" class="btn-group" data-toggle="buttons-radio" >
+                                <button type="button" class="btn needslider" name="US Layer" value="us">US</button>
+                                <button type="button" class="btn" name="US Layer" value="usm">USM</button>
+                                <button type="button" class="btn" name="US Layer" value="uss">USS</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav" role="navigation">
+                        <li class="dropup">
+                            <div data-toggle="dropdown">
+                                <a id="multimedia-button" role="button" class="btn dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-play-circle icon-white"></i> Multimedia</a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="multimedia-button">
+                                    <li><a tabindex="-1" href="#" value="PanoPOIs"><i class="icon-road"></i> Foto panoramiche</a></li>
+                                    <li><a tabindex="-1" href="#" value="models"><i class="icon-th-large"></i> Reperti 3D</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <div>
+                            <li><a id="statistics" class="btn primary morepopover" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a></li>
+                        </div>
+                    </ul>
+                    <div id="us-opt-div" class="hidden-div">
+                        <ul class="nav">
+                            <li><p class="navbar-text" style="margin:14px">Azioni per US:</p></li>
+                            <li>
+                                <div class="slider-div">
+                                    <div id="map_slider" style="height:9px"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="nav pull-right">
+                        <li>
+                            <div class="btn-group">
+                                <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i> Aiuto</a>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <ul class="nav pull-right">
-                    <li>
-                        <div class="btn-group">
-                            <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i> Aiuto</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                </div>
             </div>
         </div>
+
     </div>
     <!-- end map + layer selection bar -->
+
     <br>
     <hr>
     <footer>
@@ -217,15 +258,15 @@
     <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="js/bootstrap-popover.js"></script>
     <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
-    <script type="text/javascript" src="js/jquery-pageslide/jquery.pageslide.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="js/jquery-pageslide/jquery.pageslide.js"></script>
     <script>
     // popover and tooltips buttons
         $(document).ready(function () {
-                $("#statistics").popover({placement : 'top'})
-                $("[rel=tooltip]").tooltip();
-                $('.dropdown-toggle').dropdown();
+            $("#statistics").popover({placement : 'top'})
+            $("[rel=tooltip]").tooltip();
+            $('.dropdown-toggle').dropdown();
         });
-
     </script>
 
     <!-- geo-JS -->
@@ -255,6 +296,7 @@
                     curlayer.events.register('loadend', curlayer, function(evt) {
                         var layerStats = getValuesInterval(curlayer.name, 'height');
                         
+                        //http://dev.openlayers.org/releases/OpenLayers-2.11/doc/apidocs/files/OpenLayers/Layer/Vector-js.html#OpenLayers.Layer.Vector.drawFeature
                         $('#map_slider').slider({
                             min: 0,
                             max: 100,
@@ -312,5 +354,10 @@
         })
     </script>
     <script type="text/javascript" src="js/bootstrap-helptour.js"></script>
+
+    <!-- thingiview -->
+    <script src="js/thingiview/javascripts/Three.js"></script>
+    <script src="js/thingiview/javascripts/plane.js"></script>
+    <script src="js/thingiview/javascripts/thingiview.js"></script>
 </body>
 </html>

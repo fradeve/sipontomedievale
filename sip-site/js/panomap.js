@@ -52,7 +52,7 @@ function startPov(povLayer, poiLayer) {
         onComplete: function() {
             var nearest = findClosest(viewpoint, poiLayer);
             viewptft.move(new OpenLayers.LonLat(nearest.geometry.x, nearest.geometry.y));
-            console.log(nearest.attributes.desc);
+            //console.log(nearest.attributes.desc);
             loadPano(nearest, "pannellum_7DV1CB6d4a", "useful-container");
         }
     })
@@ -90,13 +90,12 @@ function movePano(poiLayer, where) {
 
 function startmap() {
     var options =  {
-        maxExtent : new OpenLayers.Bounds(
-            -128 * 156543.0339,
-            -128 * 156543.0339,
-            128 * 156543.0339,
-            128 * 156543.0339
-        ),
-        maxResolution : 156543.03390625,
+        // left bottom right top
+        /*
+         * maxExtent : new OpenLayers.Bounds(15.881743470825, 41.602663814758, 15.901484529175, 41.617684185242),
+         * minExtent : new OpenLayers.Bounds(15.8918223, 41.6099681, 15.8918944, 41.6100547),
+         */
+
         units : 'm',
         controls:[
             //allows user pan/zoom ability
@@ -106,20 +105,26 @@ function startmap() {
             //displays the zoom tools
             new OpenLayers.Control.ZoomPanel(),
         ],
-        projection : _projObj.mercator,
-        displayProjection : _projObj.wgs84
+        projection          :   _projObj.mercator,
+        displayProjection   :   _projObj.wgs84,
+        numZoomLevels       :   25
     };
 
     map = new OpenLayers.Map('map_element', options);
 
-    // create base map layer, add and center on digging site
-    var osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
-            transitionEffect: "resize",
-            tileOptions: {crossOriginKeyword: null}
+    var wms = new OpenLayers.Layer.WMS(
+        "digbase WMS",
+        "http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WMS",
+        {
+            layers      :   'digbase',
+            transparency:   true
+        },{
+            isBaseLayer :   true,
+            projection  :   _projObj.wgs84
         }
     );
 
-    map.addLayer(osm_layer);
+    map.addLayer(wms);
 
     // create panorama POIs layer and add POIs
     poi_layer = new OpenLayers.Layer.Vector("PanoPOIs", {
