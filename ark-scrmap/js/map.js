@@ -5,20 +5,11 @@
 var map;
 var _projObj = {
     wgs84 : new OpenLayers.Projection('EPSG:4326'),
-    mercator : new OpenLayers.Projection('EPSG:900913'),
-    osm_wms : new OpenLayers.Projection('EPSG:3857')
+    mercator : new OpenLayers.Projection('EPSG:900913')
 };
 
 function init() {
     map = new OpenLayers.Map('map_element', {
-        maxExtent : new OpenLayers.Bounds(
-            -128 * 156543.0339,
-            -128 * 156543.0339,
-            128 * 156543.0339,
-            128 * 156543.0339),
-
-        maxResolution : 156543.03390625,
-	numZoomLevels : 23,
         units : 'm',
         theme: null,
 
@@ -32,40 +23,150 @@ function init() {
             new OpenLayers.Control.ZoomPanel()
         ],
 
+	eventListeners : {
+	    'zoomend' : hide_basemap
+	},
+
         projection : _projObj.mercator,
         displayProjection : _projObj.wgs84
     });
 
-    /* ### test 1: Layer.OSM */
-    var osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
-        resolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
-                      19567.87923828125, 9783.939619140625, 4891.9698095703125,
-                      2445.9849047851562, 1222.9924523925781, 611.4962261962891,
-                      305.74811309814453, 152.87405654907226, 76.43702827453613,
-                      38.218514137268066, 19.109257068634033, 9.554628534317017,
-                      4.777314267158508, 2.388657133579254, 1.194328566789627,
-                      0.5971642833948135, 0.25, 0.1, 0.05],
-        serverResolutions: [156543.03390625, 78271.516953125, 39135.7584765625,
-                            19567.87923828125, 9783.939619140625,
-                            4891.9698095703125, 2445.9849047851562,
-                            1222.9924523925781, 611.4962261962891,
-                            305.74811309814453, 152.87405654907226,
-                            76.43702827453613, 38.218514137268066,
-                            19.109257068634033, 9.554628534317017,
-                            4.777314267158508, 2.388657133579254,
-                            1.194328566789627, 0.5971642833948135],
+    osm_layer = new OpenLayers.Layer.OSM('OSM Layer', null, {
+        maxExtent : new OpenLayers.Bounds(
+            -128 * 156543.0339,
+            -128 * 156543.0339,
+            128 * 156543.0339,
+            128 * 156543.0339),
+        maxResolution : 156543.03390625,
+        resolutions: [
+                        156543.03390625,
+                        78271.516953125,
+                        39135.7584765625,
+                        19567.87923828125,
+                        9783.939619140625,
+                        4891.9698095703125,
+                        2445.9849047851562,
+                        1222.9924523925781,
+                        611.4962261962891,
+                        305.74811309814453,
+                        152.87405654907226,
+                        76.43702827453613,
+                        38.218514137268066,
+                        19.109257068634033,
+                        9.554628534317017,
+                        4.777314267158508,
+                        2.388657133579254,
+                        1.194328566789627,
+                        0.5971642833948135,
+                        0.25,
+                        0.1,
+                        0.05
+                    ],
+        serverResolutions: [
+                        156543.03390625,
+                        78271.516953125,
+                        39135.7584765625,
+                        19567.87923828125,
+                        9783.939619140625,
+                        4891.9698095703125,
+                        2445.9849047851562,
+                        1222.9924523925781,
+                        611.4962261962891,
+                        305.74811309814453,
+                        152.87405654907226,
+                        76.43702827453613,
+                        38.218514137268066,
+                        19.109257068634033,
+                        9.554628534317017,
+                        4.777314267158508,
+                        2.388657133579254,
+                        1.194328566789627,
+                        0.5971642833948135
+                         ],
 	transitionEffect: 'resize'
     });
 
-    /* ### test 1: Layer.WMS
-    var osm_layer = new OpenLayers.Layer.WMS('OSM Layer', 'http://irs.gis-lab.info/', {
-	layers : 'osm'
-    }, {
-	//projection : _projObj.osm_wms,
-	//units : 'm',
-    }); */
-
     map.addLayers([osm_layer]);
+
+    /*** START background layer configuration ***/
+
+    // create a new style and add rules
+    var defStyle = new OpenLayers.Style({
+       strokeWidth: 0
+    });
+
+    defStyle.addRules([
+
+	new OpenLayers.Rule({
+	    symbolizer: {
+	        strokeColor: "#FDD6A4",
+	        strokeWidth: 15
+	    },
+	    filter: new OpenLayers.Filter.Comparison({
+	        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+	        property: 'obj',
+	        value: 'road'
+	    })
+        }),
+
+	new OpenLayers.Rule({
+	    symbolizer: {
+	        strokeColor: "#A09E9B",
+	        strokeWidth: 3
+	    },
+	    filter: new OpenLayers.Filter.Comparison({
+	        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+	        property: 'obj',
+	        value: 'fence'
+	    })
+        }),
+
+	new OpenLayers.Rule({
+	    symbolizer: {
+	        strokeColor: "#999999",
+	        strokeWidth: 4
+	    },
+	    filter: new OpenLayers.Filter.Comparison({
+	        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+	        property: 'obj',
+	        value: 'rail'
+	    })
+        }),
+
+	new OpenLayers.Rule({
+	    symbolizer: {
+	        strokeColor: "#F9998D",
+	        strokeWidth: 3
+	    },
+	    filter: new OpenLayers.Filter.Comparison({
+	        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+	        property: 'obj',
+	        value: 'path'
+	    })
+        })
+    ]);
+
+    var myStyleMap = new OpenLayers.StyleMap({
+	'default': defStyle
+    });
+
+    back_lines_layer = new OpenLayers.Layer.Vector("back_lines", {
+        strategies : [new OpenLayers.Strategy.Fixed()],
+        projection : _projObj.wgs84,
+        visibility : true,
+        displayInLayerSwitcher : false,
+        protocol : new OpenLayers.Protocol.WFS({
+            version : '1.0.0',
+            // TODO: try WFS 1.1.0 and OL reprojection
+            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
+            featureType : 'back_lines'
+        }),
+	styleMap   : myStyleMap
+    });
+
+    map.addLayer(back_lines_layer);
+
+    /*** END background layer configuration ***/
 
     poi_layer = new OpenLayers.Layer.Vector("PanoPOIs", {
         strategies : [new OpenLayers.Strategy.Fixed()],
@@ -88,22 +189,60 @@ function init() {
 
     map.addLayer(poi_layer);
 
+    models_layer = new OpenLayers.Layer.Vector("models", {
+        strategies : [new OpenLayers.Strategy.Fixed()],
+        projection : _projObj.wgs84,
+        visibility : false,
+        displayInLayerSwitcher : false,
+        protocol : new OpenLayers.Protocol.WFS({
+            version : '1.0.0',
+            // TODO: try WFS 1.1.0 and OL reprojection
+            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
+            featureType : 'models'
+        }),
+	styleMap: new OpenLayers.StyleMap({
+	    externalGraphic : "img/map_icons/star-3.png",
+	    graphicZIndex: 11,
+	    graphicYOffset: -28,
+	    pointRadius : 15 
+	})
+    });
+
+    map.addLayer(models_layer);
+
+    var selectFeatureCtrl = new OpenLayers.Control.SelectFeature(
+        [models_layer],
+        {
+            multiple : false,
+            toggle : true,
+            renderIntent: "select",
+            onSelect : onSelectModel,
+            onUnselect : onUnselectModel
+        });
+
+    // define the behaviour of geometries when hover
+    var highlightCtrl = new OpenLayers.Control.SelectFeature(
+        models_layer,
+        {
+            hover: true,
+            highlightOnly: true,
+            renderIntent: "temporary"
+        });
+
+    map.addControl(highlightCtrl);
+    map.addControl(selectFeatureCtrl);
+
+    highlightCtrl.activate();
+    selectFeatureCtrl.activate();
+
     var gargano = new OpenLayers.Bounds(15.66,41.60,16.14,41.91);
     map.zoomToExtent(gargano.transform(_projObj.wgs84, _projObj.mercator))
 };
 
 
-function onPopupClose(evt) {
-    selectFeatureCtrl.unselect(selectedFeature);
-};
-
-
 function onSelect(feature) {
-    selectedFeature = feature
+    selectedFeature = feature;
     loadScr(feature.attributes.scrid)
-    //popup = new OpenLayers.Popup.FramedCloud("popup", feature.geometry.getBounds().getCenterLonLat(), new OpenLayers.Size(200, 200), "<div id='content'> <img src='images/loading.gif'></img> </div>", null, true, onPopupClose);
-    //feature.popup = popup;
-    //map.addPopup(popup);
 };
 
 
@@ -112,9 +251,34 @@ function onUnselect(feature) {
     $('#statistics').attr('data-content', '');
     console.log($('#statistics').attr('data-content'));
     $.pageslide.close();
-    //map.removePopup(feature.popup);
-    //feature.popup.destroy();
-    //feature.popup = null;
+};
+
+
+function onSelectModel(feature) {
+    console.log(feature);
+    $.ajax({
+        type : 'POST',
+        url : '../ark-scrmap/wsgi/model_builder.py',
+        data : {
+                filename: feature.attributes['filename'],
+                name : feature.attributes['name'],
+                state : feature.attributes['state'],
+                desc : feature.attributes['description'],
+                mat : feature.attributes['material'],
+                from : feature.attributes['from']
+               }
+        }).done(function(html) {
+            console.log(html);
+            $("#responseSCR").append(html);
+            $.pageslide({ href: '#responseSCR', modal: true });
+        })
+};
+
+
+function onUnselectModel(feature) {
+    $("#responseSCR").html('');
+    $('#statistics').attr('data-content', '');
+    $.pageslide.close();
 };
 
 
@@ -130,7 +294,6 @@ function loadScr(scr) {
             //$("#content img").remove();
             $("#responseSCR").append(html);
             $.pageslide({ href: '#responseSCR', modal: true });
-            //popup.setSize(new OpenLayers.Size(300, 300))
         })
 
     $.ajax({
@@ -141,21 +304,16 @@ function loadScr(scr) {
                }
         }).done(function(html) {
             console.log(html);
-            $('#statistics').attr('data-content', html)
+            $('#statistics').attr('data-content', html);
         })
 };
 
 
 function addSelectedLayer(USType) {
     // before adding new layer, check if there are other layers loaded,
-    // and destroy them; since we've one layer loaded a time, we don't need
-    // to check layer name (since layer[0] is always OSM WMS)
-    // interestin option for name checking
-    // var regExp = /Simple/g
-    // var testString = "Simple Geometry"
-    // f(regExp.test(testString)) {alert("c'è!")}
-    if (map.layers.length > 2) {
-        map.layers[2].destroy()
+    // and destroy them;
+    if (map.getLayersByName('US Layer').length > 0) {
+	map.getLayersByName('US Layer')[0].destroy();
     };
 
     uses_layer = new OpenLayers.Layer.Vector("US Layer", {
@@ -171,14 +329,14 @@ function addSelectedLayer(USType) {
         })
     });
 
-    map.addLayers([uses_layer])
+    map.addLayer(uses_layer);
 
     // operations to do after complete layer loading
     uses_layer.events.register('loadend', uses_layer, function(evt) {
 
         // zoom to layer extent function after complete layer loading
         map.zoomToExtent(uses_layer.getDataExtent())
-    })
+    });
 
     // define the behaviour of geometries in layer when selected
     var selectFeatureCtrl = new OpenLayers.Control.SelectFeature(
@@ -197,7 +355,7 @@ function addSelectedLayer(USType) {
         {
             hover: true,
             highlightOnly: true,
-            renderIntent: "temporary"
+            renderIntent: 'temporary'
         });
 
     map.addControl(highlightCtrl);
@@ -280,5 +438,16 @@ function getValuesInterval(layername, attribute) {
         'interval': interval,
         'maxFeat': maxValue,
         'minFeat': minValue
+    }
+};
+
+
+function hide_basemap(event) {
+    if (map.getZoom() > 18) {
+        map.getLayersBy('name', 'OSM Layer')[0].setVisibility(false);
+        map.getLayersBy('name', 'back_lines')[0].setVisibility(true)
+    } else {
+        map.getLayersBy('name', 'OSM Layer')[0].setVisibility(true);
+        map.getLayersBy('name', 'back_lines')[0].setVisibility(false)
     }
 }
