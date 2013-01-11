@@ -23,13 +23,13 @@
             {
                 "startDate":"488",
                 "headline":"Riconquista di Teodorico",
-                "text":"<p>Riconquista della città da parte di Teodorico, re dei Goti; concessione sgravi fiscali per due anni per danni subiti durante l'occupazione della classe dei commercianti (<i>negotiatores</i>).</p>"
+                "text":"<p>Riconquista della città da parte di Teodorico, re dei Goti; concessione di sgravi fiscali per due anni per danni subiti durante l'occupazione della classe dei commercianti (<i>negotiatores</i>).</p>"
             },
             {
                 "startDate":"641",
                 "endDate":"642",
                 "headline":"Saccheggio degli Slavi",
-                "text":"<p>Orde di Slavi a bordo di una grande quantità di navi (<i>cum moltitudine navium</i>), sbarcati non lontanto dalla cittadina di Siponto la invadono devastandola.</p>"
+                "text":"<p>Orde di Slavi a bordo di una grande quantità di navi (<i>cum moltitudine navium</i>), sbarcati <i>non longe a civitate Seponto</i>, invadono Siponto devastandola.</p>"
             },
             {
                 "startDate":"649",
@@ -44,7 +44,7 @@
                 "startDate":"658",
                 "endDate":"671",
                 "headline":"La falsa bolla",
-                "text":"<p>Falsa bolla di papa Vitaliano che sancisce l'annessione della diocesi sipontina e del santuario di Montesantangelo alla diocesi beneventana, avvenuta secondo la vita di San Barbato per volontà di Romualdo. Non sono chiare le vicende successive. Probabilmente la città tornò in mani bizantine, per alcuni era sempre stata al centro di una enclave bizantina.</p>",
+                "text":"<p>Falsa bolla di papa Vitaliano che sancisce l'annessione della diocesi sipontina e del santuario di Montesantangelo alla diocesi beneventana, avvenuta secondo la vita di San Barbato per volontà di Romualdo.</p>",
                 "asset": {
                     "media":"img/timeline/658.jpg",
                     "caption":"Papa Vitaliano"
@@ -64,7 +64,7 @@
                 "startDate":"840",
                 "endDate":"855",
                 "headline":"Siponto capoluogo longobardo",
-                "text":"<p>Siponto capoluogo del gastaldato, divisa tra la classe nobiliare (<i>nobiles</i>) e quella popolare (<i>ignobiles</i>), come consuetudine longobarda.</p>"
+                "text":"<p>Siponto capoluogo del gastaldato, è divisa tra la classe nobiliare (<i>nobiles</i>) e quella popolare (<i>ignobiles</i>), come consuetudine longobarda.</p>"
             },
             {
                 "startDate":"869",
@@ -116,7 +116,7 @@
             {
                 "startDate":"970",
                 "headline":"In testa al catepanato",
-                "text":"<p>Istituzione del Catepanato d'Italia, del quale  Siponto fu la città più settentrionale.</p>",
+                "text":"<p>Istituzione del Catepanato d'Italia, del quale Siponto è la città più settentrionale.</p>",
                 "asset": {
                     "media":"img/timeline/970.jpg",
                     "caption":"Il Catepanato d'Italia"
@@ -135,7 +135,7 @@
                 "startDate":"995",
                 "enddate":"1010",
                 "headline":"Gli ebrei sipontini",
-                "text":"<p>Un gruppo di giovani della comunità ebraica sipontina si era recato a Pumbedita per studiare nell'accademia talmudica di 'Hai Gaon, diffondendo al ritorno conoscenze del diritto babilonese. Rabbi Anan Bar Marinos ha-Cohen, Sipontino, scrive l'inno al profeta Elia.</p>"
+                "text":"<p>Un gruppo di giovani della comunità ebraica sipontina si reca a Pumbedita per studiare nell'accademia talmudica di 'Hai Gaon, diffondendo al ritorno conoscenze del diritto babilonese. Rabbi Anan Bar Marinos ha-Cohen, Sipontino, scrive l'inno al profeta Elia.</p>"
             },
             {
                 "startDate":"1014",
@@ -222,15 +222,25 @@
                 "text":"<p>Beniamino da Tudela durante il suo viaggio in Italia menziona Yudak, figlio di rabbi Ysaak ben Melchisedeq, un esegeta della “Mishnah”, grande rabbino della città di Siponto.</p>"
             },
             {
+                "startDate":"1172",
+                "headline":"Città diroccata",
+                "text":"<p>La città di Siponto viene definita dalle fonti <i>diroccata</i> (<i>obrutamn civitatem sipontinam</i>).</p>"
+            },
+            {
                 "startDate":"1184",
                 "headline":"Nuovo arcivescovo",
-                "text":"<p>Giovanni IV arcivescovo di Siponto, sostituito alla morte da Ugone.</p>"
+                "text":"<p>Giovanni IV arcivescovo di Siponto, viene sostituito alla morte da Ugone.</p>"
             },
             {
                 "startDate":"1180",
                 "enddate":"1193",
                 "headline":"Siponto citata come casale",
-                "text":"<p>Siponto citata come casale (<i>casalia in civitate veteris Siponti</i>).</p>"
+                "text":"<p>Siponto viene citata come casale (<i>casalia in civitate veteris Siponti</i>).</p>"
+            },
+            {
+                "startDate":"1200",
+                "headline":"Siponto distrutta",
+                "text":"<p>Secondo le fonti viene distrutta la città di Siponto (<i>x eo tempore quo diruta est civitas Siponti</i>).</p>"
             },
             {
                 "startDate":"1223",
@@ -264,7 +274,7 @@
             {
                 "startDate":"1260",
                 "headline":"Alcune abbazie cadute in disgrazia",
-                "text":"<p>Bolla di Papa Alessandro IV in cui descrive la rovina dell'abbazia di S. Leonardo `instabile, abominevole ed in rovina` (<i>in lapsus detestabilem seu ruinam</i>). Tra le cause: le scorrerie dei saraceni dalla vicina Lucera, lo stato di abbandono dei luoghi  e il generale disagio degli abitanti superstiti (probabilmente i Sipontini). Nei documenti ricorrente è la menzione di tristitia temporum, riferita a molti monasteri in Capitanata (come quelli di S. Leonardo e di S. Maria delle Tremiti) e a tutto il territorio in generale. San Leonardo chiamata <i>non domus dei, sed spelunca latronum ab omnibus</i>.</p>",
+                "text":"<p>Bolla di Papa Alessandro IV in cui descrive la rovina dell'abbazia di S. Leonardo `instabile, abominevole ed in rovina` (<i>in lapsus detestabilem seu ruinam</i>). Tra le cause: le scorrerie dei saraceni dalla vicina Lucera, lo stato di abbandono dei luoghi  e il generale disagio degli abitanti superstiti (probabilmente i Sipontini). Nei documenti ricorrente è la menzione di tristitia temporum, riferita a molti monasteri in Capitanata (come quelli di S. Leonardo e di S. Maria delle Tremiti) e a tutto il territorio in generale. San Leonardo viene definita 'non la casa di Dio, ma una spelonca per ladri' (<i>non domus dei, sed spelunca latronum ab omnibus</i>).</p>",
                 "asset": {
                     "media":"img/timeline/san_leonardo.jpg",
                     "caption":"I resti dell'abbazia di San Leonardo"
@@ -273,12 +283,12 @@
             {
                 "startDate":"1263",
                 "headline":"Emanazione del <i>Datum Orte</i>",
-                "text":"<p><i>Datum Orte</i>, diploma emanato da Ortona, redatto dal notaio Pietro di Alife con il quale Manfredi invitò gli ultimi cittadini di Siponto ad abbandonare la città totalmente (ex toto) e a spostarsi in un luogo vicino più salubre, offrendo inoltre l'immunità di dieci anni dalle tasse. Siponto infatti aveva subito l'impaludamento ed era tempestata dalla malaria (<i>propter ipsius loci intemperiem et imminentem ibi corruptionem aeris</i>).</p>" 
+                "text":"<p><i>Datum Orte</i>, diploma emanato da Ortona, redatto dal notaio Pietro di Alife con il quale Manfredi invita gli ultimi cittadini di Siponto ad abbandonare la città totalmente (ex toto) e a spostarsi in un luogo vicino più salubre, offrendo inoltre l'immunità di dieci anni dalle tasse. Siponto infatti ha subito l'impaludamento ed è tempestata dalla malaria (<i>propter ipsius loci intemperiem et imminentem ibi corruptionem aeris</i>).</p>" 
             },
             {
                 "startDate":"1266",
                 "headline":"Manfredonia, nuova Siponto",
-                "text":"<p>Nuovo regnante Carlo I d'Angiò, chiamò Manfredonia la `nuova Siponto' (<i>Sypuntum Novellum</i>, nell'atto relativo alla restituzione della zecca alla sua sede originaria: Brindisi), per una <i>damnatio memoriae</i> nei confronti di Manfredi.</p>",
+                "text":"<p>Nuovo regnante Carlo I d'Angiò, chiama Manfredonia la `nuova Siponto' (<i>Sypuntum Novellum</i>, nell'atto relativo alla restituzione della zecca alla sua sede originaria: Brindisi, per una <i>damnatio memoriae</i> nei confronti di Manfredi.</p>",
                 "asset": {
                     "media":"img/timeline/manfredonia_golfo.jpg",
                     "caption":"Manfredonia vista dal mare"
@@ -297,12 +307,12 @@
             {
                 "startDate":"1270",
                 "headline":"Un processo per proprietà a Siponto",
-                "text":"<p>In <i>platea Syponti ante domus S. Marie Theot. in Syponto</i> si trovano <i>Abiuso olim canonico eccl. S. Leronardi</i> con Balduino frate della <i>Domus di S. Maria Teot.</i> di Barletta e precettore di San Leonardo, alla presenza di Bartolomeo giudice <i>Syponti Novelli</i> e del notaio Benvenuto <i>Syponti Novelli</i>, chiede quanto a lui dovuto e restituisce ogni suo diritto futuro alla Casa Teotonica, con tutti i suoi beni e gli animali alla chiesa di S. Leonardo alla sua morte. Balduino, precettore  dei Teotonici di S. Leonardo concede per fustem a Vito di Siponto una zona delimitata dalla laguna per la caccia agli uccelli e altre terre colte e incolte nel territorio di Siponto a S. Syminus, con un censo non precisato e sei paia di mallarde.</p>"
+                "text":"<p>Nella piazza di Siponto davanti alla domus di S. Maria dei Teutonici (<i>in platea Syponti ante domus S. Marie Theot. in Syponto</i>) si trovano Abiuso, un tempo canonico della chiesa di S. Leonardo (<i>olim canonico eccl. S. Leronardi</i>) con Balduino, frate della <i>Domus</i> di S. Maria dei Teutonici di Barletta e precettore di S. Leonardo, alla presenza di Bartolomeo <i>giudice della Nuova Siponto</i> (<i>Syponti Novelli</i>) e del notaio Benvenuto. Abiuso chiede quanto a lui dovuto e restituisce ogni suo diritto futuro alla Casa Teotonica, con tutti i suoi beni e gli animali alla chiesa di S. Leonardo alla sua morte. Balduino, precettore  dei Teutonici di S. Leonardo concede per <i>fustem</i> (espressione che si ricorre negli atti di donazione, compravendita o permuta dei territori longobardi pugliesi) a Vito di Siponto <i>una zona delimitata dalla laguna per la caccia agli uccelli e altre terre colte e incolte nel territorio di Siponto a S. Syminus, con un censo non precisato e sei paia di mallarde</i>.</p>"
             },
             {
                 "startDate":"1278",
                 "headline":"Siponto smantellata",
-                "text":"<p>Un diploma di re Carlo d'Angiò, ci informa che questi fece smantellare Siponto per la costruzione della cinta muraria di Manfredonia (il re concesse a maestro Giordano di Monte S. Angelo, che era addetto alla costruzione di questa, di attingere tutte le pietre  dell'antica Siponto).</p>",
+                "text":"<p>Un diploma di re Carlo d'Angiò ci informa che fa smantellare Siponto per la costruzione della cinta muraria di Manfredonia (il re concede a maestro Giordano di Monte S. Angelo, che era addetto alla costruzione di questa, di attingere <i>tutte le pietre dell'antica Siponto</i>).</p>",
                 "asset": {
                     "media":"img/timeline/1278.png",
                     "caption":"Murature smantellate in seguito al diploma di Carlo d'Angiò"
@@ -312,12 +322,12 @@
                 "startDate":"1458",
                 "endDate":"1509",
                 "headline":"I veneziani scavano a Siponto",
-                "text":"<p>I veneziani condussero degli scavi a Siponto quando Manfredonia fu data in pegno alla Repubblica Veneta per i debiti del sovrano Alfonso d'Aragona e portarono via molto probabilmente marmi e reliquie rare.</p>"
+                "text":"<p>I veneziani conducono degli scavi a Siponto quando Manfredonia fu data in pegno alla Repubblica Veneta per i debiti del sovrano Alfonso d'Aragona e portano via molto probabilmente <i>marmi e ereliquie rare</i>.</p>"
             },
             {
                 "startDate":"1620",
                 "headline":"Incedio dei documenti sipontini",
-                "text":"<p>Incendio nel'archivio arcivescovile di Manfredonia, nel quale erano conservati molti documenti sipontini.</p>"
+                "text":"<p>Incendio dell'archivio arcivescovile di Manfredonia, nel quale erano conservati molti documenti sipontini.</p>"
             }
 	]
    }

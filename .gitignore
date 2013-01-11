@@ -2,3 +2,5 @@ ark-scrmap/wfs.map
 ark-scrmap/wsgi/golden_retriever.py
 ark-scrmap/wsgi/stats.py
 sip-site/notes
+*.stl
+*.ply

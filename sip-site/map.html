@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-pageslide/jquery.pageslide.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/le-frog/jquery-ui-1.8.23.custom.css">
-    <link rel="stylesheet" type="text/css" href="../ark-scrmap/js/openlayers/theme/default/style_custom.css">
+    <link rel="stylesheet" type="text/css" href="ark-scrmap/js/openlayers/theme/default/style_custom.css">
 
     <!-- popover style -->
     <style>
@@ -137,9 +137,9 @@
                         <li><p class="navbar-text" style="margin:14px">Scegli il tipo di US:</p></li>
                         <li>
                             <div id="layer-buttons" class="btn-group" data-toggle="buttons-radio" >
-                                <button type="button" class="btn needslider" name="US Layer" value="us">US</button>
-                                <button type="button" class="btn" name="US Layer" value="usm">USM</button>
-                                <button type="button" class="btn" name="US Layer" value="uss">USS</button>
+                                <button type="button" class="btn needslider" name="US Layer" value="us" back="creste">US</button>
+                                <button type="button" class="btn" name="US Layer" value="usm" back="">USM</button>
+                                <button type="button" class="btn" name="US Layer" value="uss" back="creste">USS</button>
                             </div>
                         </li>
                     </ul>
@@ -270,8 +270,8 @@
     </script>
 
     <!-- geo-JS -->
-    <script type='text/javascript' src='../ark-scrmap/js/openlayers/OpenLayers.js'></script>
-    <script type="text/javascript" src='../ark-scrmap/js/map.js'></script>
+    <script type='text/javascript' src='ark-scrmap/js/openlayers/OpenLayers.js'></script>
+    <script type="text/javascript" src='ark-scrmap/js/map.js'></script>
     <script type='text/javascript' charset='utf-8'>
         $(document).ready(function () {
             $('div.btn-group button').click(function(){
@@ -286,7 +286,8 @@
                 // get layer info
                 var us_type = $(this).val();
                 var layer_name = $(this).attr('name');
-                addSelectedLayer(us_type);
+                var layer_back = $(this).attr('back');
+                addSelectedLayer(us_type, layer_back);
 
                 // start slider
                 if ($(this).hasClass('needslider')) {
@@ -307,7 +308,7 @@
                                 var step = ((layerStats.interval * ui.value)/100);
                                 var minSelection = (layerStats.maxFeat - step);
                                 var maxSelection = (minSelection + (layerStats.interval/10));
-                                console.log('max: ' + maxSelection + ', min: ' + minSelection);
+                                console.log('step: '+step, 'max: ' + maxSelection + ', min: ' + minSelection);
 
                                 heightFilter = new OpenLayers.Filter.Comparison({
                                     type: OpenLayers.Filter.Comparison.BETWEEN,
@@ -317,6 +318,7 @@
                                 });
 
                                 curlayer.filter = heightFilter;
+                                console.log(curlayer);
                                 curlayer.refresh({force: true})
                             }
                         });

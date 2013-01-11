@@ -114,7 +114,7 @@ function startmap() {
 
     var wms = new OpenLayers.Layer.WMS(
         "digbase WMS",
-        "http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WMS",
+        "http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wms.map&service=WMS",
         {
             layers      :   'digbase',
             transparency:   true
@@ -135,7 +135,7 @@ function startmap() {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://46.105.19.68/cgi-bin/mapserv?map=/home/fradeve/public_html/ark-oia/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : 'pano'
         })
     });

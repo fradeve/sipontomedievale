@@ -4,7 +4,7 @@ TODO: integrate following install instructions
 * estrarre ark in /var/www
 * creare nuovo database utf8_unicode_ci, nome "ark"
 * importare ark.sql in questo
-* importare ark_su.sql disattivando l'autoincrement
+* importare ark_su.sql attivando l'autoincrement (uncheck `disable auto_increment` option)
 * assicurarsi che l'utente relativo ad $sql_server in ark/config/env_settings.php abbia pieni permessi (privileges)
 
 -->
@@ -49,7 +49,7 @@ Most archaeologists will be disappointed; a question arises: where are all the f
 
 The next interesting question could be: if all the field describing a single SCR are contained in the same table, how can be they distinguished and keep organized? The fragments of data are organized using a `txttype` parameter: a definition is a type 28, description is type 34, colour is type 5, and so on. Those values are tied to the fragments of text using the _txttype_ column of `cor_tbl_txt`.
 
-So, to sum up: the SCR table has very small informations, referring to the "fragments of texts" table for all the fields values, whose nature is defined here by a number also listed in a table of the "type of text fragments". This way to proceed defines a (potentially infinite) "chain" of data, like:
+To sum up: the SCR table has very small informations, referring to the "fragments of texts" table for all the fields values, whose nature is defined here by a number also listed in a table of the "type of text fragments". This way to proceed defines a (potentially infinite) "chain" of data, like:
 
     cxt_tbl_cxt <-- cor_tbl_txt <-- cor_lut_txttype
 
@@ -115,7 +115,9 @@ Now that we have saved the CMAP, we can create a new Structure Map. Select the C
 
 	As usual, user have to define the site code.
 
-	In the final step, user will select the same options seen above, plus the "raw_itemval_col" containing the value that will be imported in this field (usually the `ark.import_test.year` column itself) and the "Date type". Please notice that the values in the "Date type" drop-down list can be found and modified editing the `ark.cor_lut_datetype` lookup table and accordingly defining a name for that in the `cor_tbl_alias` table (remember to set here the `itemkey` and `itemvalue` values for the new record, based on the `cor_lut_datetype.id` value).
+	In the final step, user will select the same options seen above, plus the "raw_itemval_col". This is a key field, because while "UID column" field gives to the import script a series of number to cycle in order to perform a complete check of all the records, the "raw_itemval_col" defines the code (`itemval`) to append to the Site Code (above, ARK or SIP) in order to give a unique value to each record. That said, for instance, one could bind both fields to the UID value, or UID to UID and "raw_itemval_col" to the ordinal US value stored in another column. This last option is useful when external scripts try to access Ark data using the SU number (derived from other db, eg. PostGIS) instead of the Ark's internal UID.
+
+	Please notice that the values in the "Date type" drop-down list can be found and modified editing the `ark.cor_lut_datetype` lookup table and accordingly defining a name for that in the `cor_tbl_alias` table (remember to set here the `itemkey` and `itemvalue` values for the new record, based on the `cor_lut_datetype.id` value).
 
 	Done! User can run a dry test.
 
