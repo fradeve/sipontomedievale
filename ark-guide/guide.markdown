@@ -125,6 +125,10 @@ Now that we have saved the CMAP, we can create a new Structure Map. Select the C
 
 4.	__import data__: the real final step; from the menu on the left select "Extraction Test and Import"; the list of the mapped fields in the Structure Map will be show on the right part of the page, and clicking on one of these will show the table we have seen during the dry import test. On the bottom of this page the "RUN LIVE ADD" button will do the import.
 
+5.	__set SCR type__: Ark by default accepts three tipes of SCR: SU, SSU, HSU, each defined by a number (respectively 1, 2, 3); it seems that the current import system does not support the insertion of such number, so one has to update the following table by himself; this could be simply accomplished using an SQL update query, e.g. assuming that we have SCR of SU type starting from code `ARK_1` to `ARK_184`, the query is
+
+		UPDATE cxt_tbl_cxt SET cxt_tbl_cxt.cxttype = "1" WHERE cxt_no BETWEEN 1 AND 184
+
 ### Make backups! ###
 
 As usually happens when using a new software, no one expects that things will run just fine during the first attempt. So, a tip: make a backup of your Ark database. If data will be incorrectly imported, turning back to a previous state of the database is nearly impossible. Most servers have so much space that a database backup is a quite simple thing. Let's see how this can be done.

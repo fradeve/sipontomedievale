@@ -1,6 +1,6 @@
-ark-scrmap/wfs.map
-ark-scrmap/wsgi/golden_retriever.py
-ark-scrmap/wsgi/stats.py
-sip-site/notes
+*wfs.map*
+*_test*
+*_orig*
+sip-site/ark-scrmap/wsgi/stats.py
 *.stl
 *.ply

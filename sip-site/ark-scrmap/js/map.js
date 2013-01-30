@@ -158,13 +158,15 @@ function init() {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : 'back_lines'
         }),
 	styleMap   : myStyleMap
     });
 
     map.addLayer(back_lines_layer);
+
+    console.log('added back_lines_layer')
 
     /*** END background layers configuration ***/
 
@@ -176,7 +178,7 @@ function init() {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : 'pano'
         }),
 		styleMap: new OpenLayers.StyleMap({
@@ -197,7 +199,7 @@ function init() {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : 'models'
         }),
 	styleMap: new OpenLayers.StyleMap({
@@ -324,7 +326,7 @@ function addSelectedLayer(USType, layer_back) {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : USType
         })
     });
@@ -401,7 +403,7 @@ function addSelectedLayer(USType, layer_back) {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : layer_back
         })
     });
