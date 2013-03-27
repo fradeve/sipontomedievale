@@ -6,3 +6,4 @@ This repo contains the code running under [www.sipontomedievale.it](http://www.s
 * `sip-site` contains the whole website and libraries
 * `ark-guide` contains an old version of the GIS tool used to explore SCRs
 * `slides` contains PDF and LaTeX code presenting the project (in Italian)
+* `paper` contains LaTeX academic paper wrote as a project presentation
