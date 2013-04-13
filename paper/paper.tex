@@ -2,10 +2,29 @@
 % + add image of webgis + 3D
 % + add image of webgis + US layer with lateral panel open
 
+%% NOTES:
+% [tikz] the graph is generated using the following command against a `.dot` file
+
+%   dot2tex --figonly -ftikz -o test-dot2tex-fig1.tex --codeonly --autosize --nominsize test-dot2tex-fig1.dot
+
+% [bibliography] is generated using biber, as follows
+
+%   pdflatex paper.tex
+%   biber paper
+%   pdflatex paper.tex
+%   pdflatex paper.tex
+
 \documentclass{paper}
 
 %% increase number of registers
 \usepackage{etex}
+
+%% tikz
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{dot2texi}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
 
 %% [notes] double columns notes
 \usepackage{eledmac}
@@ -82,19 +101,18 @@
 \subtitle{Il progetto ``Siponto Aperta''}
 
 \author{
-    \large{Patrizia Albrizio\thanks{Laureanda in Archeologia}}
+    \large{Patrizia Albrizio\thanks{Laureanda in Archeologia Medievale}}
     \and
     \large{Francesco de Virgilio\thanks{\protect\href{mailto:francesco.devirgilio@openoia.org}{francesco.devirgilio@openoia.org}, laureando in Scienza e Tecnologia per la Diagnostica e Conservazione dei Beni Culturali}}
     \and
-    \large{Ginevra Panzarino\thanks{Specializzanda in Archeologia}}
+    \large{Ginevra Panzarino\thanks{Specializzanda in Archeologia Tardoantica e Medievale}}
     \and
-    \large{Enrica Zambetta\thanks{Specialista in Archeologia}}
+    \large{Enrica Zambetta\thanks{Specialista in Archeologia Post-classica}}
 }
 
 \institution{O.I.A. --- Open Idea for Archaeology}
 
 \date{Marzo 2013}
-\vspace{-5cm}
 \maketitle
 \enlargethispage{5cm}
 
@@ -233,7 +251,7 @@
 
     \subsection{La struttura del sito}
 
-        Raggiungibile all'indirizzo \url{www.sipontoaperta.it} (fig.), il sito è servito da una macchina gestita da Ubuntu Server\footnote{\url{http://www.ubuntu.com/business}.} con Apache\footnote{\url{https://www.apache.org}.}. É stato realizzato utilizzando Twitter Bootstrap\footnote{\url{http://twitter.github.com/bootstrap}.}, particolarmente apprezzato per la sua \emph{responsiveness}, ovvero l'adattamento a qualsiasi tipo di dispositivo (il sito è fruibile da computer, tablet, smartphone) e per la compatibilità con quasi tutti i maggiori browser web. Tutto il codice del sito (con l'esclusione delle librerie esterne) è rilasciato su GitHub\footnote{\url{https://github.com/fradeve/sipontomedievale}.} in licenza GPL v3. La struttura del sito è ottimizzata per la visualizzazione con Mozilla Firefox.
+        Raggiungibile all'indirizzo \url{www.sipontoaperta.it} (fig.), il sito è servito da una macchina gestita da Ubuntu Server\footnote{\url{http://www.ubuntu.com/business}.} con Apache\footnote{\url{https://www.apache.org}.}. Uno schema riassuntivo di come interfacce, framework e librerie sono state organizzate è visibile in fig.~\ref{fig:struct}. Il sito è stato realizzato utilizzando Twitter Bootstrap\footnote{\url{http://twitter.github.com/bootstrap}.}, particolarmente apprezzato per la sua \emph{responsiveness}, ovvero l'adattamento a qualsiasi tipo di dispositivo (il sito è fruibile da computer, tablet, smartphone) e per la compatibilità con quasi tutti i maggiori browser web. Tutto il codice del sito (con l'esclusione delle librerie esterne) è rilasciato su GitHub\footnote{\url{https://github.com/fradeve/sipontomedievale}.} in licenza GPL v3. La struttura del sito è ottimizzata per la visualizzazione con Mozilla Firefox.
 
         I contenuti sono stati divisi nelle seguenti pagine: \emph{Home}, \emph{Storia}, \emph{Scavo}, \emph{GIS}, \emph{WebTour}, \emph{Download}. Ogni pagina, ad esclusione dell'ultima, contiene un elemento multimediale, basato su componenti JavaScript \textit{open source}, finalizzato al maggior coinvolgimento dell'utente. Escludendo la pagina GIS a cui si dedicano i paragrafi successivi, le singole parti sono strutturate come segue.\\
 
@@ -290,6 +308,87 @@
 
 \addcontentsline{toc}{section}{\refname}
 \printbibliography
+
+\begin{sidewaysfigure}
+    \centering
+    \Large{
+        \noindent\resizebox{\linewidth}{!}{
+            \begin{tikzpicture}[
+                    main/.style
+                        ={rectangle, draw=YellowGreen, ultra thick, fill=YellowGreen!50,
+                        text centered, rounded corners,
+                        minimum height=3em},
+                    page/.style
+                        ={rectangle, draw=GreenYellow, very thick, fill=GreenYellow!50,
+                        text centered, rounded corners,
+                        minimum height=2.5em},
+                    file/.style
+                        ={rectangle split,
+                          rectangle split horizontal,
+                          rectangle split parts=2,
+                          rectangle split part fill={White, Goldenrod!50},
+                          draw=Orange, very thin,
+                          text centered, rounded corners,
+                          minimum height=2.5em},
+                    js/.style
+                        ={rectangle split,
+                          rectangle split horizontal,
+                          rectangle split parts=2,
+                          rectangle split part fill={White, NavyBlue!70},
+                          draw=NavyBlue, very thick,
+                          text centered, rounded corners,
+                          minimum height=2em},
+                    jquery/.style
+                        ={rectangle split,
+                          rectangle split horizontal,
+                          rectangle split parts=2,
+                          rectangle split part fill={White, Blue!50},
+                          draw=Blue, very thick,
+                          text centered, rounded corners,
+                          minimum height=2em},
+                    php/.style
+                        ={rectangle split,
+                          rectangle split horizontal,
+                          rectangle split parts=2,
+                          rectangle split part fill={White, RoyalPurple!50},
+                          draw=Black, very thick,
+                          text centered, rounded corners,
+                          minimum height=2em},
+                    py/.style
+                        ={rectangle split,
+                          rectangle split horizontal,
+                          rectangle split parts=2,
+                          rectangle split part fill={White, Yellow!50},
+                          draw=MidnightBlue, very thick,
+                          text centered, rounded corners,
+                          minimum height=2em},
+                    gis/.style
+                        ={rectangle, draw=SeaGreen, thick, fill=SeaGreen!80,
+                        text centered, rounded corners,
+                        minimum height=2em},
+                    geodb/.style
+                        ={rectangle, fill=White,
+                          draw=SeaGreen!80, very thick, double,
+                          text centered, rounded corners,
+                          minimum height=1em},
+                    mysql/.style
+                        ={rectangle, fill=Sepia!80,
+                          draw=Black, very thick,
+                          text centered, rounded corners,
+                          minimum height=2em},
+                    db/.style
+                        ={rectangle, fill=White,
+                          draw=Sepia!80, very thick, double,
+                          text centered, rounded corners,
+                          minimum height=1em}
+            ]
+                \input{test-dot2tex-fig1.tex}
+            \end{tikzpicture}
+        }
+    }
+    \caption[Struttura di Siponto Aperta]{Struttura dei contenuti multimediali ed interattivi di Siponto Aperta}
+    \label{fig:struct}
+\end{sidewaysfigure}
 
 \begin{figure}
     \centering
