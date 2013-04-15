@@ -68,6 +68,7 @@ function loadPano(poi, iframeId, containerId) {
     $('#description').html(poi.attributes.desc);
 
     document.getElementById(iframeId).onload = function() {
+	console.log(poi.attributes.zoomIn);
         this.contentWindow.zoomIn(poi.attributes.zoomIn);
     };
 };
@@ -114,7 +115,7 @@ function startmap() {
 
     var wms = new OpenLayers.Layer.WMS(
         "digbase WMS",
-        "http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wms.map&service=WMS",
+        "http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wms.map&service=WMS",
         {
             layers      :   'digbase',
             transparency:   true
@@ -135,7 +136,7 @@ function startmap() {
         protocol : new OpenLayers.Protocol.WFS({
             version : '1.0.0',
             // TODO: try WFS 1.1.0 and OL reprojection
-            url : 'http://www.sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
+            url : 'http://sipontomedievale.it/cgi-bin/mapserv?map=/home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wfs.map&service=WFS',
             featureType : 'pano'
         })
     });
