@@ -52,7 +52,6 @@ function startPov(povLayer, poiLayer) {
         onComplete: function() {
             var nearest = findClosest(viewpoint, poiLayer);
             viewptft.move(new OpenLayers.LonLat(nearest.geometry.x, nearest.geometry.y));
-            //console.log(nearest.attributes.desc);
             loadPano(nearest, "pannellum_7DV1CB6d4a", "useful-container");
         }
     })
@@ -63,13 +62,31 @@ function startPov(povLayer, poiLayer) {
 
 function loadPano(poi, iframeId, containerId) {
     currentPov = poi;
-    pannellum_iframe = '<iframe title="pannellum panorama viewer" width="100%" height="300" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-style:none;" id="' + iframeId + '" src="js/pannellum/build/pannellum.htm?panorama=../../../img/panos/pano' + poi.attributes.id + '.jpg&amp;title=' + poi.attributes.title + '&amp;autoload=yes"></iframe>';
+    pannellum_iframe =
+	'<iframe title="pannellum panorama viewer" width="100%" height="300" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="border-style:none;" id="'
+	+ iframeId
+	+ '" src="js/pannellum/build/pannellum.htm?panorama=../../../img/panos/pano'
+	+ poi.attributes.id
+	+ '.jpg&amp;title='
+	+ poi.attributes.title
+	+ '&amp;autoload=yes"></iframe>';
     $('#' + containerId).html(pannellum_iframe);
     $('#description').html(poi.attributes.desc);
 
     document.getElementById(iframeId).onload = function() {
 	console.log(poi.attributes.zoomIn);
         this.contentWindow.zoomIn(poi.attributes.zoomIn);
+	hrefref = 'img/webtour/' + poi.attributes.id + '/1.jpg';
+	$('#imagebutton').html(
+		'<a href="img/webtour/'
+		+ poi.attributes.id
+		+ '/1.jpg" class="btn large primary fresco" type="imagebutton" data-fresco-type="image"'
+		+ ' data-fresco-group="'
+		+ poi.attributes.id
+		+ '" title="Galleria" data-fresco-caption="'
+		+ $("a[class='frescostart'][href='" + hrefref + "']").attr('data-fresco-caption')
+		+ '"><i class="icon-picture icon-white"></i> Galleria</a>'
+	);
     };
 };
 
