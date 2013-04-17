@@ -4,3 +4,4 @@
 sip-site/ark-scrmap/wsgi/stats.py
 *.stl
 *.ply
+.vagrant*
