@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+	ServerAdmin info@openoia.org
+	ServerName ark.sipontomedievale.it
+	ServerAlias www.ark.sipontomedievale.it
+	ErrorLog /var/log/apache2/ark.sipontomedievale.it-error.log
+	CustomLog /var/log/apache2/ark.sipontomedievale.it-access.log combined
+
+	DocumentRoot /home/oia/public_html/ark
+
+	<Directory /home/oia/public_html/ark>
+		Options FollowSymLinks
+		AllowOverride Limit Options FileInfo
+		DirectoryIndex index.php
+	</Directory>
+</VirtualHost>
+

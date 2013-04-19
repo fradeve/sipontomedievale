@@ -1,0 +1,37 @@
+<VirtualHost *:80>
+	ServerAdmin info@openoia.org
+	ServerName sipontomedievale.it
+	ServerAlias www.sipontomedievale.it
+	ErrorLog /var/log/apache2/sipontomedievale.it-error.log
+	LogLevel warn
+	CustomLog /var/log/apache2/sipontomedievale.it-access.log combined
+
+	DocumentRoot /home/oia/public_html/sipontomedievale/sip-site
+
+	## mapserver ##
+
+	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+	<Directory "/usr/lib/cgi-bin">
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	<files "*.map">
+		Order allow,deny
+		Deny from all
+	</files>
+	
+	#<Directory /home/oia/public_html/sipontomedievale/sip-site>
+	#	Header add Access-Control-Allow-Origin "*"
+	#</Directory>
+
+	## python CGI ##
+
+	<Directory /home/oia/public_html/sipontomedievale/sip-site/ark-scrmap/wsgi>
+		Options ExecCGI
+		SetHandler cgi-script
+	</Directory>
+
+</VirtualHost>
