@@ -8,6 +8,8 @@ var _projObj = {
     mercator : new OpenLayers.Projection('EPSG:900913')
 };
 
+OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
+
 function init() {
     map = new OpenLayers.Map('map_element', {
         units : 'm',
@@ -260,7 +262,7 @@ function onSelectModel(feature) {
     console.log(feature);
     $.ajax({
         type : 'POST',
-        url : '../ark-scrmap/wsgi/model_builder.py',
+        url : 'ark-scrmap/wsgi/model_builder.py',
         data : {
                 filename: feature.attributes['filename'],
                 name : feature.attributes['name'],
@@ -287,7 +289,7 @@ function onUnselectModel(feature) {
 function loadScr(scr) {
     $.ajax({
         type : 'POST',
-        url : '../ark-scrmap/wsgi/golden_retriever.py',
+        url : 'ark-scrmap/wsgi/golden_retriever.py',
         data : {
                 scr : scr
                }
@@ -300,7 +302,7 @@ function loadScr(scr) {
 
     $.ajax({
         type : 'POST',
-        url : '../ark-scrmap/wsgi/stats.py',
+        url : 'ark-scrmap/wsgi/stats.py',
         data : {
                 scr : scr
                }

@@ -8,6 +8,8 @@ var _projObj = {
     mercator : new OpenLayers.Projection('EPSG:900913')
 };
 
+OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
+
 // POV vars
 var currentPov;
 
