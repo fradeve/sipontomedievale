@@ -7,13 +7,7 @@
     <link rel="stylesheet" href="css/spruce_theme/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="ark-scrmap/js/openlayers/theme/default/style_custom.css">
     <link rel="stylesheet" type="text/css" href="js/frescojs/css/fresco/fresco.css"/>
-
-    <!-- popover style -->
-    <style>
-        .popSourceBlock {
-            display:none;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="js/bootstro.js/bootstro.min.css"/>
 
     <!-- load default css for OpenLayers and modify Pan buttons positions -->
     <!--<style type="text/css">
@@ -51,6 +45,7 @@
              top: 8px;
        } 
     </style>-->
+
 </head>
 <body>
 
@@ -108,7 +103,7 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <div id="useful-container" style="margin-bottom: -6px;">
+                <div id="useful-container" style="margin-bottom: -6px;" class="bootstro" data-bootstro-content="In questa finestra c'è il panorama: premi in un punto e trascina il cursore per spostare il punto di vista; nel riquadro in basso a sinistra è riportato il nome del punto. Una volta fatto click con il mouse all'interno della finestra, puoi anche usare i tasti freccia della tastiera per spostare il panorama." data-bootstro-title="I panorami" data-bootstro-step='1'data-bootstro-width="500px" data-bootstro-placement="bottom">
                     <canvas id="panorama-div">
                     </canvas>
                 </div>
@@ -117,7 +112,7 @@
                         <div class="container" style="width: auto;">
                             <ul class="nav">
                                 <li>
-                                    <div id="zoom-buttons" class="btn-group">
+                                    <div id="zoom-buttons" class="btn-group bootstro" id="pano-move" data-bootstro-content="Con questi pulsanti puoi ingrandire e rimpicciolire il panorama per osservarne meglio i dettagli" data-bootstro-title="Pulsanti zoom" data-bootstro-step='2' data-bootstro-placement="top">
                                         <button class="btn" type="zoomIn"><a class="icon-plus icon-white"></a></button>
                                         <button class="btn" type="zoomOut"><a class="icon-minus icon-white"></a></button>
                                     </div>
@@ -125,7 +120,7 @@
                             </ul>
                             <ul class="nav">
                                 <li>
-                                    <div class="btn-group" id="fullscreenButton">
+                                    <div class="btn-group bootstro" id="fullscreenButton" data-bootstro-content="Questo pulsante serve ad ingrandire il panorama alla dimensione massima possibile, quella del tuo computer. Provalo, ti sembrerà di essere nello scavo!" data-bootstro-title="Schermo pieno" data-bootstro-step='3' data-bootstro-placement="bottom">
                                         <button class="btn" type="fullscreenButton"><a class="icon-fullscreen icon-white"></a></button>
                                     </div>
                                 </li>
@@ -133,13 +128,13 @@
                             <ul class="nav pull-right">
                                 <li>
                                     <div class="btn-group">
-                                        <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i> Aiuto</a>
+                                        <a type="helptour" class="btn large primary bootstro" data-bootstro-title="Aiuto" data-bootstro-content="Serve aiuto? Prova il tour guidato delle funzioni!" data-bootstro-step='0' data-bootstro-placement="bottom"><i class="icon-question-sign icon-white"></i> Aiuto</a>
                                     </div>
                                 </li>
                             </ul>
                             <ul class="nav pull-right">
                                 <li>
-                                    <div class="btn-group" id="pano-move">
+                                    <div class="btn-group" class="bootstro" data-bootstro-content="Puoi muoverti tra i panorami disponibili lungo il percorso semplicemente premendo uno di questi due pusanti: destra per andare avanti e sinistra per tornare indietro." data-bootstro-title="Avanti-indietro" data-bootstro-step='5' data-bootstro-placement="bottom">
                                         <button class="btn" type="panoPrev"><a class="icon-chevron-left icon-white"></a></button>
                                         <button class="btn" type="panoNext"><a class="icon-chevron-right icon-white"></a></button>
                                     </div>
@@ -147,7 +142,7 @@
                             </ul>
                             <ul class="nav pull-left">
                                 <li>
-                                    <div class="btn-group" id="imagebutton">
+                                    <div class="btn-group bootstro" id="imagebutton" data-bootstro-content="Ad alcuni panorami sono associate delle immagini: quando questo pulsante compare, premilo per visualizzare una galleria delle immagini." data-bootstro-title="Galleria" data-bootstro-step='6' data-bootstro-placement="top">
                                     </div>
                                 </li>
                             </ul>
@@ -161,11 +156,11 @@
     <div class="container">
             <div class="row">
                 <div class="span6">
-                    <div id='map_element' style='height: 350px;'></div>
+                    <div id='map_element' style='height: 350px;' class="bootstro" data-bootstro-content="Seleziona, tieni premuto e trascina il cursore per spostare il punto di vista dell'osservatore su un nuovo punto panoramico; una volta rilasciato, il punto di vista si posizionerà automaticamente su quello più vicino." data-bootstro-title="La mappa" data-bootstro-step='4' data-bootstro-placement="left"></div>
                 </div>
                 <div class="span6">
                     <!-- TODO http://css-tricks.com/examples/CustomizedScroll/ -->
-                    <div id='description' style="overflow-y: auto; height: 350px"></div>
+                    <div id='description' style="overflow-y: auto; height: 350px" class="bootstro" data-bootstro-content="Questa è la descrizione del panorama che stai osservando: riporta notizie storiche sulla zona e sugli elementi più interessanti che si trovano in essa." data-bootstro-title="Descrizione" data-bootstro-step='5' data-bootstro-placement="right"></div>
                 </div>
             </div>
     </div>
@@ -178,77 +173,6 @@
         </div>
     </footer>
 
-    <div id="pop1_content" class="popSourceBlock">
-        <div class="popPlacement">top</div>
-        <div class="popId">pop1</div>
-        <div class="popTitle">
-            Aiuto
-        </div>
-        <div class="popContent">
-            <p>Serve aiuto? Prova il tour guidato delle funzioni!</p>
-        </div>
-    </div>
-    <div id="pop2_content" class="popSourceBlock">
-        <div class="popPlacement">bottom</div>
-        <div class="popId">useful-container</div>
-        <div class="popTitle">
-            I panorami
-        </div>
-        <div class="popContent">
-            <p>In questa finestra c'è il panorama: premi in un punto e trascina il cursore per spostare il punto di vista; nel riquadro in basso a sinistra è riportato il nome del punto. Una volta fatto click con il mouse all'interno della finestra, puoi anche usare i tasti freccia della tastiera per spostare il panorama.</p>
-        </div>
-    </div>
-    <div id="pop3_content" class="popSourceBlock">
-        <div class="popPlacement">top</div>
-        <div class="popId">zoom-buttons</div>
-        <div class="popTitle">
-            Zoom
-        </div>
-        <div class="popContent">
-            <p>Con questi pulsanti puoi ingrandire e rimpicciolire il panorama per osservarne i dettagli.</p>
-        </div>
-    </div>
-    <div id="pop4_content" class="popSourceBlock">
-        <div class="popPlacement">right</div>
-        <div class="popId">fullscreenButton</div>
-        <div class="popTitle">
-            Schermo pieno
-        </div>
-        <div class="popContent">
-            <p>Questo pulsante serve ad ingrandire il panorama alla dimensione massima possibile, quella del tuo computer. Provalo, ti sembrerà di essere nello scavo!</p>
-        </div>
-    </div>
-    <div id="pop5_content" class="popSourceBlock">
-        <div class="popPlacement">right</div>
-        <div class="popId">map_element</div>
-        <div class="popTitle">
-            La mappa
-        </div>
-        <div class="popContent">
-            <p>Seleziona, tieni premuto e trascina il cursore per spostare il punto di vista dell'osservatore su un nuovo punto panoramico; una volta rilasciato, il punto di vista si posizionerà automaticamente su quello più vicino.</p>
-        </div>
-    </div>
-    <div id="pop6_content" class="popSourceBlock">
-        <div class="popPlacement">top</div>
-        <div class="popId">pano-move</div>
-        <div class="popTitle">
-            Avanti-Indietro
-        </div>
-        <div class="popContent">
-            <p>Puoi muoverti tra i panorami disponibili lungo il percorso semplicemente premendo uno di questi due pusanti: destra per andare avanti e sinistra per tornare indietro.</p>
-        </div>
-    </div>
-    <div id="pop7_content" class="popSourceBlock">
-        <div class="popPlacement">left</div>
-        <div class="popId">description</div>
-        <div class="popTitle">
-            Descrizione
-        </div>
-        <div class="popContent">
-            <p>Questa è la descrizione del panorama che stai osservando: riporta notizie storiche sulla zona e sugli elementi più interessanti che si trovano in essa.</p>
-        </div>
-    </div>
-
     <!-- links to gallery images -->
     <a href="img/webtour/1/1.jpg" class="frescostart" data-fresco-caption="didascalia1"></a>
     <a href="img/webtour/1/2.jpg" class="fresco" data-fresco-type="image" data-fresco-caption="didascalia2" data-fresco-group="1"></a>
@@ -257,6 +181,8 @@
     <!-- JS for fast page loading -->
     <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="js/bootstro.js/bootstro.min.js"/></script>
 
     <!-- geo JS -->
     <script type='text/javascript' src='ark-scrmap/js/openlayers/OpenLayers.js'></script>
@@ -293,13 +219,17 @@
         window.onload = init;
     </script>
 
-    <!-- bootstrap buttons -->
-    <script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="js/bootstrap-popover.js"></script>
-
     <!-- buttons -->
     <script>
         $(document).ready(function () {
+            $('[type="helptour"]').click(function(){
+                bootstro.start('.bootstro', {
+                    nextButton : '<button class="btn btn-primary btn-mini bootstro-next-btn">Avanti <i class="icon-arrow-right icon-white"></i></button>',
+                    prevButton : '<button class="btn btn-primary btn-mini bootstro-prev-btn"><i class="icon-arrow-left icon-white"></i> Indietro</button>',
+                    finishButton : '<button class="btn btn-mini btn-success bootstro-finish-btn"><i class="icon-ok"></i> Ok!</button>'
+                });
+            });
+
             $('[type="zoomIn"]').click(function(){
                 document.getElementById("pannellum_7DV1CB6d4a").contentWindow.zoomIn(5)
             });
@@ -323,8 +253,6 @@
             });
         });
     </script>
-
-    <script type="text/javascript" src="js/bootstrap-helptour.js"></script>
 
     <script type="text/javascript" src="js/frescojs/js/fresco/fresco.js"></script>
 </body>

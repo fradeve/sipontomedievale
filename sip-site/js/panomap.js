@@ -76,19 +76,22 @@ function loadPano(poi, iframeId, containerId) {
     $('#description').html(poi.attributes.desc);
 
     document.getElementById(iframeId).onload = function() {
-	console.log(poi.attributes.zoomIn);
         this.contentWindow.zoomIn(poi.attributes.zoomIn);
 	hrefref = 'img/webtour/' + poi.attributes.id + '/1.jpg';
-	$('#imagebutton').html(
-		'<a href="img/webtour/'
-		+ poi.attributes.id
-		+ '/1.jpg" class="btn large primary fresco" type="imagebutton" data-fresco-type="image"'
-		+ ' data-fresco-group="'
-		+ poi.attributes.id
-		+ '" title="Galleria" data-fresco-caption="'
-		+ $("a[class='frescostart'][href='" + hrefref + "']").attr('data-fresco-caption')
-		+ '"><i class="icon-picture icon-white"></i> Galleria</a>'
-	);
+        if ($("a[class='frescostart'][href='" + hrefref + "']")[0]) {
+            $('#imagebutton').html(
+                    '<a href="img/webtour/'
+                    + poi.attributes.id
+                    + '/1.jpg" class="btn large primary fresco" type="imagebutton" data-fresco-type="image"'
+                    + ' data-fresco-group="'
+                    + poi.attributes.id
+                    + '" title="Galleria" data-fresco-caption="'
+                    + $("a[class='frescostart'][href='" + hrefref + "']").attr('data-fresco-caption')
+                    + '"><i class="icon-picture icon-white"></i> Galleria</a>'
+            );
+        }else{
+            $('#imagebutton').html('');
+        };
     };
 };
 
