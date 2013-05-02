@@ -5,3 +5,5 @@ sip-site/ark-scrmap/wsgi/stats.py
 *.stl
 *.ply
 .vagrant*
+*.pyc
+server_config.yaml

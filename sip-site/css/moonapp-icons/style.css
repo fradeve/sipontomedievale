@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'browserIconfont';
+	src:url('fonts/browserIconfont.eot');
+	src:url('fonts/browserIconfont.eot?#iefix') format('embedded-opentype'),
+		url('fonts/browserIconfont.woff') format('woff'),
+		url('fonts/browserIconfont.ttf') format('truetype'),
+		url('fonts/browserIconfont.svg#browserIconfont') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'browserIconfont';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-uniE840, .icon-uniE841, .icon-uniE842, .icon-uniE843, .icon-safari {
+	font-family: 'browserIconfont';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-uniE840:before {
+	content: "\e840";
+}
+.icon-uniE841:before {
+	content: "\e841";
+}
+.icon-uniE842:before {
+	content: "\e842";
+}
+.icon-uniE843:before {
+	content: "\e843";
+}
+.icon-safari:before {
+	content: "\e00f";
+}
