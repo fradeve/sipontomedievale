@@ -7,15 +7,10 @@
     <link rel="stylesheet" type="text/css" href="js/jquery-pageslide/jquery.pageslide.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-ui/themes/le-frog/jquery-ui-1.8.23.custom.css">
     <link rel="stylesheet" type="text/css" href="ark-scrmap/js/openlayers/theme/default/style_custom.css">
+    <link rel="stylesheet" type="text/css" href="js/bootstro.js/bootstro.min.css"/>
 
     <!-- popover style -->
     <style>
-        .popSourceBlock {
-            display:none;
-        }
-        .popFakeElement {
-            display:none;
-        }
         .hidden-div {
             display:none;
         }
@@ -125,7 +120,7 @@
 
     <!-- start map + layer selection bar -->
     <div id="map_collapse" class="collapse in">
-        <div id="map_popover">
+        <div id="map_popover" class="bootstro" data-bootstro-title="La mappa" data-bootstro-content="In questa mappa, dopo aver selezionato un layer, verranno visualizzate tutte le Unità Statigrafiche della stessa tipologia. Facendo click su una Unità, potrai visualizzare grazie alla barra a scomparsa le informazioni che la riguardano, ed esplorare la scheda completa. In alto a destra, i pulsanti permettono di ingrandire o rimpicciolire la mappa." data-bootstro-step='1' data-bootstro-placement="bottom" data-bootstro-width="500px">
             <div id='map_element' style='height: 600px; background-color:#F1EEE8'></div>
         </div>
 
@@ -136,14 +131,14 @@
                     <ul class="nav">
                         <li><p class="navbar-text" style="margin:14px">Scegli il tipo di US:</p></li>
                         <li>
-                            <div id="layer-buttons" class="btn-group" data-toggle="buttons-radio" >
+                        <div id="layer-buttons" class="btn-group bootstro" data-toggle="buttons-radio" data-bootstro-title="Le unità stratigrafiche" data-bootstro-content="Per cominciare, premi uno di questi pulsanti: permettono di selezionare un <i>layer</i>, ovvero un insieme di informazioni; è possibile scegliere tra Unità Stratigrafiche generali, Unità Stratigrafiche Murarie (USM) ed Unità Stratigrafiche delle Sepolture (USS)." data-bootstro-placement="right" data-bootstro-step='2'>
                                 <button type="button" class="btn needslider" name="US Layer" value="us" back="creste">US</button>
                                 <button type="button" class="btn" name="US Layer" value="usm" back="">USM</button>
                                 <button type="button" class="btn" name="US Layer" value="uss" back="creste">USS</button>
                             </div>
                         </li>
                     </ul>
-                    <ul class="nav" role="navigation">
+                    <ul class="nav bootstro" role="navigation" data-bootstro-title="Layer multimediali" data-bootstro-content="In questo menù è possibile selezionare i layer degli elementi multimediali: modelli 3D dei reperti, punti panoramici, ecc." data-bootstro-step='3' data-bootstro-placement="right">
                         <li class="dropup">
                             <div data-toggle="dropdown">
                                 <a id="multimedia-button" role="button" class="btn dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-play-circle icon-white"></i> Multimedia</a>
@@ -154,7 +149,7 @@
                             </div>
                         </li>
                     </ul>
-                    <ul class="nav">
+                    <ul class="nav bootstro" data-bootstro-title="Statistiche" data-bootstro-content="Questo pulsante permette, dopo aver selezionato un layer ed una unità stratigrafica, di ottenere delle statistiche sullo scavo e sull'unità stessa." data-bootstro-step='4' data-bootstro-placement="right">
                         <div>
                             <li><a id="statistics" class="btn primary morepopover" rel="popover" title="Statistiche brevi" data-content="Per ottenere delle statistiche, seleziona un layer ed una geometria."><i class="icon-random icon-white"></i> Statistiche</a></li>
                         </div>
@@ -172,7 +167,7 @@
                     <ul class="nav pull-right">
                         <li>
                             <div class="btn-group">
-                                <a id="pop1" class="btn large primary" rel="popover" title="Aiuto"><i class="icon-question-sign icon-white"></i> Aiuto</a>
+                                <a type="helptour" class="btn large primary bootstro" data-bootstro-title="Aiuto" data-bootstro-content="Serve aiuto? Esplora il tour guidato delle funzioni della mappa!" data-bootstro-step='0' data-bootstro-placement="left"><i class="icon-question-sign icon-white"></i> Aiuto</a>
                             </div>
                         </li>
                     </ul>
@@ -190,67 +185,6 @@
         <p>&copy; <a href="http://openoia.org/blog/">Open Idea for Archaeology</a>, 2012</p>
     </footer>
 
-    <div id="pop1_content" class="popSourceBlock">
-        <div class="popPlacement">left</div>
-        <div class="popId">pop1</div>
-        <div class="popTitle">
-            Aiuto
-        </div>
-        <div class="popContent">
-            <p>Serve aiuto? Prova il tour guidato delle funzioni!</p>
-        </div>
-    </div>
-    <div id="pop2_content" class="popSourceBlock">
-        <div class="popPlacement">bottom</div>
-        <div class="popId">map_popover</div>
-        <div class="popTitle">
-            La mappa
-        </div>
-        <div class="popContent">
-            <p>In questa mappa, dopo aver selezionato un layer, verranno visualizzate tutte le Unità Statigrafiche della stessa tipologia. Facendo click su una Unità, potrai visualizzare grazie alla barra a scomparsa le informazioni che la riguardano, ed esplorare la scheda completa. In alto a destra, i pulsanti permettono di ingrandire o rimpicciolire la mappa.</p>
-        </div>
-    </div>
-    <div id="pop3_content" class="popSourceBlock">
-        <div class="popPlacement">bottom</div>
-        <div class="popId">layer-buttons</div>
-        <div class="popTitle">
-            Le Unità Stratigrafiche
-        </div>
-        <div class="popContent">
-            <p>Questi pulsanti permettono di selezionare un layer, ovvero un insieme di informazioni; è possibile scegliere tra Unità Stratigrafiche Murarie (USM) ed Unità Stratigrafiche Solitarie (USS).</p>
-        </div>
-    </div>
-    <div id="pop4_content" class="popSourceBlock">
-        <div class="popPlacement">bottom</div>
-        <div class="popId">multimedia-button</div>
-        <div class="popTitle">
-            Layer multimediali
-        </div>
-        <div class="popContent">
-            <p>In questo menù è possibile selezionare i layer degli elementi multimediali: modelli 3D dei reperti, punti panoramici, ecc.</p>
-        </div>
-    </div>
-    <div id="pop5_content" class="popSourceBlock">
-        <div class="popPlacement">top</div>
-        <div class="popId">statistics</div>
-        <div class="popTitle">
-            Statistiche
-        </div>
-        <div class="popContent">
-            <p>Questo pulsante permette, dopo aver selezionato un layer ed una unità stratigrafica, di ottenere delle statistiche sullo scavo e sull'unità stessa.</p>
-        </div>
-    </div>
-    <div id="pop6_content" class="popSourceBlock">
-        <div class="popPlacement">top</div>
-        <div class="popId">us-opt-div</div>
-        <div class="popTitle">
-            Scorrimento
-        </div>
-        <div class="popContent">
-            <p>Dopo aver selezionato una US, in questo punto apparirà uno slider, una barra di scorrimento che permette di filtrare gli strati in base alla profondità: portare il cursore verso la fine dello slider significa approfondire lo scavo e mostrare soltanto gli strati più profondi.</p>
-        </div>
-    </div>
-
     <!-- JS for fast page loading -->
     <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-ui/ui/jquery-ui-1.8.23.custom.js"></script>
@@ -259,6 +193,7 @@
     <script type="text/javascript" src="js/bootstrap-popover.js"></script>
     <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="js/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="js/bootstro.js/bootstro.min.js"/></script>
     <script type="text/javascript" src="js/jquery-pageslide/jquery.pageslide.js"></script>
     <script>
     // popover and tooltips buttons
@@ -266,6 +201,13 @@
             $("#statistics").popover({placement : 'top'})
             $("[rel=tooltip]").tooltip();
             $('.dropdown-toggle').dropdown();
+            $('[type="helptour"]').click(function(){
+                bootstro.start('.bootstro', {
+                    nextButton : '<button class="btn btn-primary btn-mini bootstro-next-btn">Avanti <i class="icon-arrow-right icon-white"></i></button>',
+                    prevButton : '<button class="btn btn-primary btn-mini bootstro-prev-btn"><i class="icon-arrow-left icon-white"></i> Indietro</button>',
+                    finishButton : '<button class="btn btn-mini btn-success bootstro-finish-btn"><i class="icon-ok"></i> Ok!</button>'
+                });
+            });
         });
     </script>
 
@@ -355,7 +297,6 @@
             })
         })
     </script>
-    <script type="text/javascript" src="js/bootstrap-helptour.js"></script>
 
     <!-- thingiview -->
     <script src="js/thingiview/javascripts/Three.js"></script>
