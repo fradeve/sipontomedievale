@@ -1,10 +1,37 @@
+# MapServer
 *wfs.map*
+
+# scripts
+sip-site/ark-scrmap/wsgi/stats.py
+
+# dev
 *_test*
 *_orig*
-sip-site/ark-scrmap/wsgi/stats.py
+*.pyc
+
+# 3D
 *.stl
 *.ply
-.vagrant*
-*.pyc
+
+# custom config
 server_config.yaml
+.vagrant*
+
+# OS
 .directory
+
+# PyCharm
+workspace.xml
+
+# VIM
+.vimrc
+
+# LaTeX
+*.toc
+*.fls
+*_latexmk
+*.aux
+*.log
+*.nav
+*.out
+*.snm
