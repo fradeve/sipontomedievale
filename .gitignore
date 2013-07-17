@@ -35,3 +35,7 @@ workspace.xml
 *.nav
 *.out
 *.snm
+*.bbl
+*.bcf
+*.blg
+*.run.xml
