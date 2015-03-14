@@ -1,0 +1,40 @@
+/* Global */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+/*end global*/
+
+#map {
+	height: 300px;
+	width: 100%;
+	display: block;
+}
+
+#loader {
+	height: 80px;
+	width: 150px;
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	z-index: 999;
+	position: absolute;
+	top: 500px;
+	left: 500px;
+	border: 1px solid #AAAAAA;
+}
+
+#loader img {
+	display: block;
+	padding-top: 7px;
+	padding-bottom: 12px;
+	margin: 0 auto;
+}
+
+#loader p {
+	color: #000;
+	text-align: center;
+}

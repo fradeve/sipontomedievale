@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{% static "css/leaflet.css" %}" />
+    <link rel="stylesheet" href="{% static "css/MarkerCluster.css" %}" />
+    <link rel="stylesheet" href="{% static "css/MarkerCluster.Default.css" %}" />
+    <link rel="stylesheet" href="{% static "css/Control.MiniMap.css" %}" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{% static "css/leaflet.ie.css" %}" />
+        <![endif]-->
+    <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="{% static "js/leaflet.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "js/leaflet.markercluster.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "js/Control.MiniMap.js" %}" type="text/javascript" charset="utf-8"></script>
+    <title>A map</title>
+</head>
+    <body>
+        A body with a nice word depending by template: {{ nice_word }}
+    </body>
+</html>
+
+
+<!DOCTYPE html>
+    <body>
+        <div id="map"></div>
+        <script src="{% static "js/base.js" %}" type="text/javascript" charset="utf-8"></script>
+    </body>
+</html>
